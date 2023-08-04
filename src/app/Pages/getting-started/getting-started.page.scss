@@ -1,0 +1,74 @@
+$color_1: white;
+$font-family_1: "Poppins-Bold";
+$font-family_2: "Poppins-Regular";
+
+ion-content {
+  align-items: center;
+}
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.5;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent, black);
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 100px;
+  align-items: flex-start;
+}
+.logo-container {
+  display: flex;
+  flex-direction: row;
+}
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-top: -10px;
+  margin-right: -10px;
+}
+
+.title {
+  font-family: $font-family_1;
+  color: $color_1;
+  font-size: 32px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.quote {
+  font-family: $font-family_2;
+  color: $color_1;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 0 30px;
+}
+.button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+ion-button{
+  width: 350px;
+}
+ion-icon {
+  color: white;
+  font-size: 24px;
+  margin-left: 10px;
+}

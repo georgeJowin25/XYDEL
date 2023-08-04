@@ -1,0 +1,43 @@
+<ion-buttons slot="start">
+  <ion-back-button defaultHref="/getting-started"></ion-back-button>
+</ion-buttons>
+<ion-content class="container">
+  <div class="content-wrapper">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <h1 class="title">Enter your number to join with us</h1>
+          <p class="subtitle">We will send a confirmation code</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-input
+            label="Mobile Number"
+            label-placement="floating"
+            fill="outline"
+            placeholder="+91 xxxxxxxxxx"
+            [(ngModel)]="formattedMobileNumber"
+            (ngModelChange)="handleNumberChange($event)"
+            [maskito]="phoneMask"
+            [maskitoElement]="maskPredicate"
+            type="tel"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <div class="button">
+            <ion-button [disabled]="isButtonDisabled" (click)="handleGetOTP()"
+              >Get OTP</ion-button
+            >
+            <p>
+              By Clicking, I accept the <a class="a">terms of service</a> and
+              <a class="a">privacy policy</a>
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "XYDEL-USER",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

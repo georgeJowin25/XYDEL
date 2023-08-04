@@ -1,0 +1,36 @@
+<ion-buttons slot="start">
+  <ion-back-button defaultHref="/mobile-number"></ion-back-button>
+</ion-buttons>
+
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-img src="assets\Images\Otp.gif" class="center-img"></ion-img>
+
+    <h1 class="ion-text-center">OTP Verification</h1>
+    <p class="ion-text-center">
+      Enter the OTP sent to +91
+      <span class="mobile-number">{{ mobileNumber }}</span>
+      <span class="edit-number" (click)="handleEditNumber()"> Edit </span>
+    </p>
+
+    <ion-input label="OTP" label-placement="floating" fill="outline" placeholder="Enter the OTP" type="number"
+      [(ngModel)]="otp"  (ngModelChange)="handleOtpChange($event)"  ></ion-input>
+
+    <p class="error-text" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <div class="button">
+      <ion-button color="primary" [disabled]="isDisabled" (click)="handleVerifyOTP()">
+        Verify OTP
+      </ion-button>
+    </div>
+
+    <div class="timer-text">
+      <ng-container *ngIf="!resendDisabled; else timerTemplate">
+        <a (click)="handleResendOTP()">Resend OTP</a>
+      </ng-container>
+      <ng-template #timerTemplate>
+        <p>Resend OTP in {{ timer }} seconds</p>
+      </ng-template>
+    </div>
+  </ion-grid>
+</ion-content>
