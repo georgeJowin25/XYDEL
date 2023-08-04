@@ -1,23 +1,23 @@
-ion-content{
-  display : flex;
+ion-content {
+  display: flex;
   align-items: center;
 }
-ion-img.center-img {
+.center-img {
   display: block;
   width: 40%;
   max-width: 300px;
-  margin: 0 auto 1em; 
+  margin: 0 auto 1em;
 }
 
 h1 {
   font-size: 30px;
-  font-family: 'Poppins-Bold';
+  font-family: "Poppins-Bold";
   margin-bottom: 0.1em;
 }
 
 p {
   font-size: 14px;
-  font-family: 'Poppins-Regular';
+  font-family: "Poppins-Regular";
   color: gray;
   margin-bottom: 2em;
 
@@ -32,21 +32,19 @@ p {
 }
 
 ion-input {
-    flex: 1;
-    font-size: 18px;
-    border: 0;
-    border-color: lightgray;
-    height: 50px;
-    width : 300px;
-    margin-left: 50px;
-
-  }
-  
+  flex: 1;
+  font-size: 18px;
+  border: 0;
+  border-color: lightgray;
+  height: 50px;
+  width: 300px;
+  margin-left: 50px;
+}
 
 .error-text {
   font-size: 10px;
   margin-top: 10px;
-  font-family: 'Poppins-Regular';
+  font-family: "Poppins-Regular";
   color: red;
   margin-left: 90px;
 }
@@ -56,11 +54,10 @@ ion-input {
   justify-content: center; /* Center the button */
   border-radius: 18px;
   margin-top: 1em;
-  
 }
 .timer-text {
   font-size: 12px;
-  font-family: 'Poppins-Regular';
+  font-family: "Poppins-Regular";
   color: gray;
   text-align: center;
 }
