@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OtpService } from './Api.Service';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-otp',
@@ -25,6 +26,7 @@ export class OtpPage implements OnInit, OnDestroy {
   constructor(
     private navCtrl: NavController,
     private route: ActivatedRoute,
+    private router : Router,
     private otpService: OtpService // Inject the OtpService
   ) {}
 
@@ -56,27 +58,34 @@ export class OtpPage implements OnInit, OnDestroy {
   }
 
   handleVerifyOTP() {
+    this.router.navigate(['/location'] );
     this.subscription.add(
-      this.otpService.verifyOTP(this.mobileNumber, this.otp).pipe(
-        tap((response: any) => {
-          console.log('API Response:', response); // Add this log to inspect the response
-  
-          if (response.status === 'OK') {
-            // OTP is valid, navigate to the location screen
-            this.navCtrl.navigateForward('location');
-          } else if (
-            response.status === 'INTERNAL_SERVER_ERROR' &&
-            response.message === 'Otp Expired.Please Generate The New OTP'
-          ) {
-            // OTP is expired, enable resend and show error message
-            this.setResendDisabled(false);
-            this.errorMessage = response.message || 'OTP verification failed';
-          } else {
-            // OTP is invalid, show error message
-            this.errorMessage = response.message || 'OTP verification failed';
-          }
-        })
-      ).subscribe()
+      this.otpService.verifyOTP(this.mobileNumber, this.otp)
+        .pipe(
+          tap((response: any) => {
+            console.log('API Response:', response); // Add this log to inspect the response
+            
+            if (response.status === 'OK') {
+              // OTP is valid, navigate to the location screen
+             this.router.navigate(['/location'] );
+            } else if (
+              response.status === 'INTERNAL_SERVER_ERROR' &&
+              response.message === 'Otp Expired.Please Generate The New OTP'
+
+            )
+             {
+              // OTP is expired, enable resend and show error message
+              this.setResendDisabled(false);
+              this.errorMessage = response.message || 'OTP verification failed';
+              
+            } else {
+              // OTP is invalid, show error message
+              this.errorMessage = response.message || 'OTP verification failed';
+              
+            }
+          })
+        )
+        .subscribe()
     );
   }
 
@@ -93,8 +102,8 @@ export class OtpPage implements OnInit, OnDestroy {
     this.timer = 60;
 
     this.subscription.add(
-      this.otpService.resendOTP(this.mobileNumber).subscribe(
-        (response: any) => {
+      this.otpService.resendOTP(this.mobileNumber).subscribe({
+        next: (response: any) => {
           if (response.ok) {
             // Request succeeded
             this.apiResponse = response;
@@ -104,10 +113,10 @@ export class OtpPage implements OnInit, OnDestroy {
             console.error(response);
           }
         },
-        (error) => {
+        error: (error) => {
           console.error(error);
-        }
-      )
+        },
+      })
     );
   }
 

@@ -1,0 +1,32 @@
+ion-content{
+    align-items: center;
+}
+
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1px;
+    margin-top: 150px;
+    margin-left: 50px;
+  }
+  
+  p {
+    font-size: 12px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  
+  ion-button {
+    margin-top: 20px;
+  }
+  
+  p:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  img {
+    width: 400px;
+    height: 300px;
+  }
+  

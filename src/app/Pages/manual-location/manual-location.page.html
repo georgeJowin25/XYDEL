@@ -1,0 +1,44 @@
+<ion-buttons slot="start">
+  <ion-back-button defaultHref="/"></ion-back-button>
+</ion-buttons>
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-title>Enter your area or apartment name</ion-title>
+      <ion-col size="12">
+        <ion-item>
+          <ion-input
+            [(ngModel)]="location"
+            placeholder="Enter your location"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="full" (click)="handleGetCurrentLocation()">
+          <ion-icon name="location-outline" slot="start"></ion-icon>
+          Use my current Location
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngIf="currentLocation">
+            <ion-icon name="locate" slot="start"></ion-icon>
+            <ion-label>
+              <h2>{{ address }},{{ pinCode }}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+    <ion-fab-button (click)="handleNext()"> Next </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,13 +1,33 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Location</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Location</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+<ion-content class="ion-padding">
+  <ion-grid class="ion-text-center">
+    <ion-row>
+      <ion-col>
+        <h2>What's your Location</h2>
+        <p>Allow Location access to get real-time updates on your order status.</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <img src="assets\Images\Notification.png" alt="Notification" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="handleAllowLocation()">Allow Location access</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p (click)="navigateToManualLocation()">Enter Location Manually</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

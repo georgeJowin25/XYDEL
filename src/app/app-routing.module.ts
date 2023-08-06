@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'manual-location',
+    loadChildren: () => import('./Pages/manual-location/manual-location.module').then( m => m.ManualLocationPageModule)
+  },
 ];
 
 @NgModule({
