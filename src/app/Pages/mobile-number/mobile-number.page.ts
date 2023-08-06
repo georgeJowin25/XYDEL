@@ -12,8 +12,7 @@ import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 })
 export class MobileNumberPage {
   readonly phoneMask: MaskitoOptions = {
-    mask: ['+', '9', '1', ' ',  /\d/, /\d/, /\d/,   /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
-  };
+    mask: ['+', '9', '1', ' ',  /\d/, /\d/, /\d/,   /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],};
   readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 
   mobileNumber!: number;
@@ -29,11 +28,15 @@ export class MobileNumberPage {
   handleNumberChange(text: string) {
     const numericInput = text.replace(/\D/g, ''); // Remove non-numeric characters
     this.mobileNumber = parseInt(numericInput.substring(2), 10); // Convert the input to a number and remove the "+91" prefix
-  
     const formattedInput = numericInput.substring(2); // Remove the "+91" prefix from the displayed input
     const maskedInput = `+91 ${formattedInput.slice(0, 3)}${formattedInput.slice(3, 6)}${formattedInput.slice(6)}`;
     this.formattedMobileNumber = maskedInput;
-    
+    if (numericInput.length === 1 && (numericInput[0] === '9' || numericInput[0] === '1')) {
+      // If the user enters only the first "9" or "1," display it with the "+91" prefix
+      const maskedInput = `+91 ${numericInput[0]}`;
+      this.formattedMobileNumber = maskedInput;
+      this.isButtonDisabled = true;
+    }
     if (numericInput.length === 12) {
       this.isButtonDisabled = false; // Enable the button if the input is a valid 10-digit number without the "+91" prefix
     } else {
