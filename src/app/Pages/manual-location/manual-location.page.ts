@@ -71,7 +71,7 @@ export class ManualLocationPage {
     }
 
     // Location is selected, navigate to the next screen
-    this.router.navigate(['/home'], {
+    this.router.navigate(['/tabs'], {
       queryParams: { address: this.address, location: this.location },
     });
   }

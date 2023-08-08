@@ -23,7 +23,7 @@ export class LocationPage {
           const { suburb, city, state, country } = addressResponse;
           const formattedAddress = `${suburb}, ${city}, ${state}, ${country}`;
           console.log(formattedAddress);
-          this.router.navigate(['/home'], {
+          this.router.navigate(['/tabs'], {
             queryParams: { address: formattedAddress, pinCode: postcode },
           });
         } else {

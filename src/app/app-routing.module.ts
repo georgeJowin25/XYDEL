@@ -24,13 +24,14 @@ const routes: Routes = [
     loadChildren: () => import('./Pages/location/location.module').then( m => m.LocationPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: 'manual-location',
     loadChildren: () => import('./Pages/manual-location/manual-location.module').then( m => m.ManualLocationPageModule)
   },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+
 ];
 
 @NgModule({
