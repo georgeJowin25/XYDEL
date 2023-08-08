@@ -6,7 +6,6 @@ import { MobileNumberPageRoutingModule } from './mobile-number-routing.module';
 import { MobileNumberPage } from './mobile-number.page';
 import { HttpClientModule } from '@angular/common/http';
 import { OtpService } from './Api.Services';
-import { MaskitoModule } from '@maskito/angular';
 
 
 
@@ -18,8 +17,6 @@ import { MaskitoModule } from '@maskito/angular';
     MobileNumberPageRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MaskitoModule
-
   ],
   declarations: [MobileNumberPage],
   providers: [OtpService],

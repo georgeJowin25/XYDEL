@@ -13,8 +13,8 @@
       <span class="edit-number" (click)="handleEditNumber()"> Edit </span>
     </p>
 
-    <ion-input label="OTP" label-placement="floating" fill="outline" placeholder="Enter the OTP" type="number"
-      [(ngModel)]="otp"  (ngModelChange)="handleOtpChange($event)"  ></ion-input>
+    <ion-input label="OTP" label-placement="floating" fill="outline" placeholder="Enter the OTP" type="tel"
+      [(ngModel)]="otp"  (ngModelChange)="handleOtpChange($event)"  maxlength="6"></ion-input>
 
     <p class="error-text" *ngIf="errorMessage">{{ errorMessage }}</p>
 

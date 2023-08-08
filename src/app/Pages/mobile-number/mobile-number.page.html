@@ -16,12 +16,11 @@
             label="Mobile Number"
             label-placement="floating"
             fill="outline"
-            placeholder="+91 xxxxxxxxxx"
-            [(ngModel)]="formattedMobileNumber"
+            placeholder="Enter Mobile Number"
+            [(ngModel)]="mobileNumber"
             (ngModelChange)="handleNumberChange($event)"
-            [maskito]="phoneMask"
-            [maskitoElement]="maskPredicate"
             type="tel"
+            maxlength="10"
           ></ion-input>
         </ion-col>
       </ion-row>
@@ -29,8 +28,7 @@
         <ion-col size="12">
           <div class="button">
             <ion-button [disabled]="isButtonDisabled" (click)="handleGetOTP()"
-              >Get OTP</ion-button
-            >
+              >Get OTP</ion-button>
             <p>
               By Clicking, I accept the <a class="a">terms of service</a> and
               <a class="a">privacy policy</a>
