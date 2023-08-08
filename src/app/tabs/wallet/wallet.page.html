@@ -1,8 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Wallet</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  <div class="example-content">Wallet Content</div>
+
+<ion-content class="ion-padding">
+  <div class="balance-container">
+    <ion-text color="primary" class="balance-text">Available Balance</ion-text>
+    <ion-text class="balance-amount">₹100.00</ion-text>
+  </div>
+  <ion-list class="list">
+   
+    <ion-item button>
+      <ion-icon name="wallet"></ion-icon>
+      <div class="item">  <ion-label> XYDEL Money</ion-label>  </div>
+    </ion-item>
+
+    <ion-item button (click)="viewTransactions()">
+      <ion-icon name="list"></ion-icon>
+      <div class="item">    <ion-label > View all Transactions</ion-label>  </div>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" color="primary" (click)="addMoney()">Add Money</ion-button>
 </ion-content>

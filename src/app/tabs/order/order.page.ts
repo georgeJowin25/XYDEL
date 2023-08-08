@@ -11,5 +11,7 @@ export class OrderPage implements OnInit {
 
   ngOnInit() {
   }
+  pickUp(){
 
+  }
 }

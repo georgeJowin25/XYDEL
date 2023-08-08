@@ -11,5 +11,12 @@ export class WalletPage implements OnInit {
 
   ngOnInit() {
   }
+  viewTransactions() {
+   
+  }
+
+  addMoney() {
+   
+  }
 
 }
