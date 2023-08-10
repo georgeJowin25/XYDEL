@@ -29,10 +29,10 @@ export class MobileNumberPage {
   }
 
   handleGetOTP() {
+    this.router.navigate(['otp'], {
+      queryParams: { mobileNumber: this.mobileNumber },
+    });
     if (!this.isButtonDisabled) {
-      this.router.navigate(['otp'], {
-        queryParams: { mobileNumber: this.mobileNumber },
-      });
       this.otpService
         .getOtp(this.mobileNumber)
         .pipe(

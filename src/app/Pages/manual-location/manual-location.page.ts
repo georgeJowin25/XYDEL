@@ -11,7 +11,6 @@ export class ManualLocationPage {
   location: string = '';
   currentLocation: Position | null = null;
   address: string = '';
-  pinCode: string = '';
 
   constructor(private router: Router) {}
 
@@ -23,22 +22,17 @@ export class ManualLocationPage {
     try {
       const position = await Geolocation.getCurrentPosition();
       this.currentLocation = position;
-        
+
       const addressResponse = await this.reverseGeocode(
         position.coords.latitude,
         position.coords.longitude
       );
 
       if (addressResponse) {
-        const { postcode } = addressResponse;
-        console.log(addressResponse);
-        const { suburb, city, state, country } = addressResponse;
-        this.address = ` ${suburb}, ${city}, ${state}, ${country}`;
-        this.pinCode = postcode
-        || 'Pin code not found';
+        const { suburb, city, state, country, postcode } = addressResponse;
+        this.address = ` ${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
       } else {
         this.address = 'Address not found';
-        this.pinCode = 'Pin code not found';
       }
     } catch (error) {
       console.log('Error getting current location:', error);
@@ -72,7 +66,7 @@ export class ManualLocationPage {
 
     // Location is selected, navigate to the next screen
     this.router.navigate(['/tabs'], {
-      queryParams: { address: this.address, location: this.location },
+      queryParams: { address: this.address },
     });
   }
 }

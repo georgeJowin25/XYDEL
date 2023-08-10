@@ -1,16 +1,18 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class OtpService {
-  private apiUrl = 'http://192.168.29.232:7001/xydel/app/v1/otp';
+ 
 
   constructor(private http: HttpClient) {}
-
+  private apiUrl = environment.apiBase;
   getOtp(mobileNumber: number): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

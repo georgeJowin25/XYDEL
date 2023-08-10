@@ -19,12 +19,11 @@ export class LocationPage {
         const { latitude, longitude } = position.coords;
         const addressResponse = await this.reverseGeocode(latitude, longitude);
         if (addressResponse) {
-          const { postcode } = addressResponse;
-          const { suburb, city, state, country } = addressResponse;
-          const formattedAddress = `${suburb}, ${city}, ${state}, ${country}`;
+          const { suburb, city, state, country, postcode} = addressResponse;
+          const formattedAddress = `${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
           console.log(formattedAddress);
           this.router.navigate(['/tabs'], {
-            queryParams: { address: formattedAddress, pinCode: postcode },
+            queryParams: { address: formattedAddress },
           });
         } else {
           // Handle case when address is not found

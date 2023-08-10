@@ -1,6 +1,66 @@
-.example-content {
+.top-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  height: 100%;
+  padding: 20px;
+}
+
+.location-icon {
+  cursor: pointer;
+} 
+
+.profile-icon {
+  margin-right: 65px;
+}
+
+
+.address-container {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.address-text {
+  font-size: 10px;
+  margin-top: -20px;
+  font-family: 'Poppins-Bold';
+}
+
+.carousel-container {
+  height: 710px;
+}
+
+.coupon-bar {
+  padding: 30px 24px;
+}
+
+.bottom-bar {
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px 24px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-overlay {
+  color: black;
+  font-size: 15px;
+  font-family: 'Poppins-Regular';
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.overlay-button {
+  padding: 12px 20px;
+  background-color: #000040;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: left;
+  font-family: 'Poppins-Regular';
+}
+
+.arrow-icon {
+  font-size: 16px;
+  color: #ffffff;
 }

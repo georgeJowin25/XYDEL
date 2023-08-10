@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+        production: false,
+        apiBase: 'http://106.51.152.163:7001/xydel/app/v1/otp',
+        env: 'dev',
 };
 
 /*
