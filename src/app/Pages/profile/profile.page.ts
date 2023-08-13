@@ -18,6 +18,7 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
+    this.loadUserDetails();
     this.route.queryParams.subscribe((params) => {
       if (params['userDetails']) {
         const userDetails = JSON.parse(params['userDetails']);
@@ -27,6 +28,22 @@ export class ProfilePage implements OnInit {
         this.image = userDetails.profileImage;
       }
     });
+  }
+
+  async loadUserDetails() {
+    try {
+      const storedUserDetails = await this.storage.get('user_details');
+      if (storedUserDetails) {
+        const { firstName, lastName, email, profileImage } =
+          JSON.parse(storedUserDetails);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.image = profileImage;
+      }
+    } catch (error) {
+      console.log('Error loading user details from Storage:', error);
+    }
   }
 
   navigateToEditProfile() {

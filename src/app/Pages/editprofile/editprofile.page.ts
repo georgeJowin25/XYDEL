@@ -79,8 +79,6 @@ export class EditprofilePage implements OnInit {
     this.image = image.webPath;
     await this.saveUserDetails();
   }
-
-
   async logData() {
     await this.saveUserDetails();
     this.router.navigate(['/profile'], {
