@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource, } from '@capacitor/camera';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -55,11 +55,14 @@ export class EditprofilePage implements OnInit {
   }
 
   async selectImage() {
-    // const status = await Camera.requestPermissions();
-    // if (status !== 'granted') {
-    //   alert('Sorry, we need camera permissions to make this work!');
-    //   return;
-    // }
+   
+      const permissionRequestResult = await Camera.requestPermissions();
+      if (permissionRequestResult.camera !== 'granted') {
+        alert('Sorry, we need camera permissions to make this work!');
+        return;
+      }
+    
+  
     const image = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Photos,
@@ -67,11 +70,11 @@ export class EditprofilePage implements OnInit {
       width: 300,
       height: 300,
     });
-
+  
     if (!image || !image.webPath) {
       return;
     }
-
+  
     this.userDetails.profileImage = image.webPath;
     this.image = image.webPath;
     await this.saveUserDetails();
