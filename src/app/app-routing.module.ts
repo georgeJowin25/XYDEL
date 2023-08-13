@@ -31,6 +31,16 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./Pages/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'editprofile',
+    loadChildren: () => import('./Pages/editprofile/editprofile.module').then( m => m.EditprofilePageModule)
+  },
+
+
 
 ];
 

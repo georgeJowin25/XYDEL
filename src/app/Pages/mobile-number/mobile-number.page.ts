@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { OtpService } from './Api.Services';
 import { tap, catchError } from 'rxjs/operators';
@@ -27,6 +27,13 @@ export class MobileNumberPage {
       this.isButtonDisabled = true;
     }
   }
+  onKeyPress(event: KeyboardEvent) {
+    const key = event.key;
+    // Check if the pressed key is a numeric character
+    if (!/^\d*$/.test(key)) {
+      event.preventDefault(); // Prevent entering non-numeric characters
+    }
+  }
 
   handleGetOTP() {
     this.router.navigate(['otp'], {
@@ -36,17 +43,19 @@ export class MobileNumberPage {
       this.otpService
         .getOtp(this.mobileNumber)
         .pipe(
-          tap((data) => {
-            if (data.ok) {
-              // Request succeeded
-              this.apiResponse = data;
-              this.router.navigate(['otp'], {
+          tap((response) => {
+            if (response.status === 'OK') {
+              // OTP sent successfully
+              this.apiResponse = response.message; // Update the apiResponse with the success message
+              this.router.navigate(['/otp'], {
                 queryParams: { mobileNumber: this.mobileNumber },
               });
             } else {
               // Request failed
-              this.apiResponse = { message: data.message || 'Error occurred.' };
-              console.error(data);
+              this.apiResponse = {
+                message: response.message || 'Error occurred.',
+              };
+              console.error(response);
             }
           }),
           catchError((error) => {

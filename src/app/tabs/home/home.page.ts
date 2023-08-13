@@ -5,6 +5,8 @@ import { Geolocation } from '@capacitor/geolocation';
 import { PushNotifications } from '@capacitor/push-notifications';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { register } from 'swiper/element/bundle';
+register();
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,7 @@ export class HomePage implements OnInit {
   showCouponPopup: boolean = false;
   private subscription: Subscription = new Subscription();
 
+  
   constructor(private router: Router, private route: ActivatedRoute) {}
   ngOnInit() {
     this.subscription.add(
@@ -26,11 +29,35 @@ export class HomePage implements OnInit {
     );
 
     this.requestNotificationPermissions();
-  }
+  }  
+  couponsData = [
+    {
+      id: 1,
+      text: 'Up to 75% off on First Order',
+      code: 'GETXYDEL',
+      iconName: 'gift-outline',
+    },
+    {
+      id: 2,
+      text: 'Special Offer: Free Delivery',
+      code: 'FREESHIP',
+      iconName: 'car-outline',
+    },
+    {
+      id: 3,
+      text: '50% off on your Next Purchase',
+      code: 'HALFOFF',
+      iconName: 'percent-outline',
+    },
+  ];
   async requestNotificationPermissions() {
     try {
-      const result = await PushNotifications.requestPermissions();
-      if (result.receive === 'granted') {
+      let permStatus = await PushNotifications.checkPermissions();
+      if (permStatus.receive === 'prompt') {
+        permStatus = await PushNotifications.requestPermissions();
+      }
+    
+      if (permStatus.receive === 'granted') {
         console.log('Notification permission granted');
       } else {
         console.log('Notification permission denied');
@@ -54,11 +81,11 @@ export class HomePage implements OnInit {
   }
 
   navigateToUserProfile() {
-    this.router.navigate(['userprofile']);
+    this.router.navigate(['/profile']);
   }
 
   navigateToOrder() {
-    this.router.navigate(['order']);
+    this.router.navigate(['/tabs/order']);
   }
 
   handleLocationIconClick() {

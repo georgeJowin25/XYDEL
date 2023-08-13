@@ -22,7 +22,7 @@ export class ManualLocationPage {
     try {
       const position = await Geolocation.getCurrentPosition();
       this.currentLocation = position;
-
+      console.log(position);
       const addressResponse = await this.reverseGeocode(
         position.coords.latitude,
         position.coords.longitude

@@ -56,6 +56,14 @@ export class OtpPage implements OnInit, OnDestroy {
       this.isDisabled = true;
     }
   }
+  onKeyPress(event: KeyboardEvent) {
+    const key = event.key;
+    // Check if the pressed key is a numeric character
+    if (!/^\d*$/.test(key)) {
+      event.preventDefault(); // Prevent entering non-numeric characters
+    }
+  }
+
 
   handleVerifyOTP() {
     this.router.navigate(['/location'] );

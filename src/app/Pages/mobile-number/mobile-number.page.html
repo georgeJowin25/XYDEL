@@ -19,8 +19,9 @@
             placeholder="Enter Mobile Number"
             [(ngModel)]="mobileNumber"
             (ngModelChange)="handleNumberChange($event)"
-            type="tel"
+            type = "tel"
             maxlength="10"
+            (keypress)="onKeyPress($event)"
           ></ion-input>
         </ion-col>
       </ion-row>

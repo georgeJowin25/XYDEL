@@ -25,12 +25,34 @@
   font-family: 'Poppins-Bold';
 }
 
-.carousel-container {
-  height: 710px;
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
+ 
+swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.coupon-item {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.gift-icon {
+  font-size: 25px;
+  margin-right: 10px;
+  color: #000040;
 }
 
-.coupon-bar {
-  padding: 30px 24px;
+.coupon-text {
+  color: black;
+  font-size: 14px;
+  text-align: center;
 }
 
 .bottom-bar {

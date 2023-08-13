@@ -14,10 +14,10 @@
     </p>
 
     <ion-input label="OTP" label-placement="floating" fill="outline" placeholder="Enter the OTP" type="tel"
-      [(ngModel)]="otp"  (ngModelChange)="handleOtpChange($event)"  maxlength="6"></ion-input>
-
-    <p class="error-text" *ngIf="errorMessage">{{ errorMessage }}</p>
-
+      [(ngModel)]="otp"  (ngModelChange)="handleOtpChange($event)"  (keypress)="onKeyPress($event)" maxlength="6"></ion-input>
+      <div class="error-text">
+    <p  *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
     <div class="button">
       <ion-button color="primary" [disabled]="isDisabled" (click)="handleVerifyOTP()">
         Verify OTP

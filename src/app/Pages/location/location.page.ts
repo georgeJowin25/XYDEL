@@ -11,17 +11,20 @@ import { Router } from '@angular/router';
 export class LocationPage {
   constructor(private router: Router) {}
 
-  async handleAllowLocation() {
+async handleAllowLocation() {
     try {
-      const permissionStatus = await Geolocation.checkPermissions();
+      let permissionStatus = await Geolocation.checkPermissions();
+    if (permissionStatus.location === 'prompt'){
+      permissionStatus = await Geolocation.requestPermissions();
+    }
       if (permissionStatus.location === 'granted') {
         const position: Position = await Geolocation.getCurrentPosition();
         const { latitude, longitude } = position.coords;
         const addressResponse = await this.reverseGeocode(latitude, longitude);
         if (addressResponse) {
+          console.log(addressResponse);
           const { suburb, city, state, country, postcode} = addressResponse;
           const formattedAddress = `${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
-          console.log(formattedAddress);
           this.router.navigate(['/tabs'], {
             queryParams: { address: formattedAddress },
           });

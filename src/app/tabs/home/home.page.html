@@ -16,14 +16,24 @@
       <p class="address-text">{{ address }}</p>
     </div>
   </div>
-
-  <div class="carousel-container">
-    <app-carousel></app-carousel>
-  </div>
-
-  <div class="coupon-bar">
-    <app-coupon-slider></app-coupon-slider>
-  </div>
+ <div>
+  <swiper-container   [loop]="true"[autoplay]="{ delay: 3000 }">
+    <swiper-slide><img src="assets\Images\slide1.png"></swiper-slide>
+    <swiper-slide><img src="assets\Images\slide2.png"></swiper-slide>
+   
+  </swiper-container>
+ </div>
+ <div>
+  <swiper-container [loop]="true" [autoplay]="{ delay: 3000 }">
+    <swiper-slide *ngFor="let item of couponsData">
+      <ion-row class="coupon-item">
+        <ion-icon [name]="item.iconName" class="gift-icon"></ion-icon>
+        <ion-label class="coupon-text">{{ item.text }}</ion-label>
+      </ion-row>
+    </swiper-slide>
+  </swiper-container>
+ </div>
+  
 
   <div class="bottom-bar">
     <div class="bottom-overlay">

@@ -4,7 +4,8 @@
 
 export const environment = {
         production: false,
-        apiBase: 'http://106.51.152.163:7001/xydel/app/v1/otp',
+        // apiBase: 'http://106.51.152.163:7001/xydel/app/v1/otp',
+        apiBase: 'http://192.168.29.232:7001/xydel/app/v1/otp',
         env: 'dev',
 };
 

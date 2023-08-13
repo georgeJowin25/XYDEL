@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="userprofile"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="profileText">Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="imageContainer">
+      <div class="profile" *ngIf="image">
+        <ion-img [src]="image" [alt]="'Profile'"></ion-img>
+        <ion-button class="imageChange" fill="clear" (click)="selectImage()">
+          <ion-icon name="camera" size="medium" color="primary"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+    <div class="mainContainer">
+      <ion-grid class="topMargin">
+        <ion-row>
+          <ion-col class="gridWidth">
+            <ion-label class="text">First Name</ion-label>
+            <ion-input
+            name="firstName"
+            class="inputBox"
+            [class.focusInput]="focus['firstName']"
+            (ionFocus)="changeFocus('firstName')"
+            (ionBlur)="changeBlur('firstName')"
+            [(ngModel)]="userDetails['firstName']"
+          ></ion-input>
+        </ion-col>
+        <ion-col class="gridWidth">
+          <ion-label class="text">Last Name</ion-label>
+          <ion-input
+            name="lastName"
+            class="inputBox"
+            [class.focusInput]="focus['lastName']"
+            (ionFocus)="changeFocus('lastName')"
+            (ionBlur)="changeBlur('lastName')"
+            [(ngModel)]="userDetails['lastName']"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item class="email topMargin">
+      <ion-label class="text">Email</ion-label>
+      <ion-input
+        name="email"
+        class="inputBox"
+        [class.focusInput]="focus['email']"
+        (ionFocus)="changeFocus('email')"
+        (ionBlur)="changeBlur('email')"
+        [(ngModel)]="userDetails['email']"
+      ></ion-input>
+      </ion-item>
+      <ion-grid class="topMargin">
+        <!-- Add other fields like gender, phone, etc. here -->
+      </ion-grid>
+    </div>
+
+    <ion-grid class="topMargin">
+      <ion-row>
+        <ion-col>
+          <ion-button
+            expand="full"
+            (click)="logData()"
+            color="primary"
+            class="submitButton"
+          >
+            <ion-label class="submitText">Save</ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
