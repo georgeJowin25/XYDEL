@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="userprofile"></ion-back-button>
+      <ion-back-button defaultHref="/profile"></ion-back-button>
     </ion-buttons>
     <ion-title class="profileText">Profile</ion-title>
   </ion-toolbar>
@@ -10,51 +10,47 @@
 <ion-content>
   <div class="container">
     <div class="imageContainer">
-      <div class="profile" *ngIf="image">
-        <ion-img [src]="image" [alt]="'Profile'"></ion-img>
-        <ion-button class="imageChange" fill="clear" (click)="selectImage()">
+      <ion-avatar class="profile-avatar">
+        <img [src]="image ? image : 'assets/Images/profile.jpg'"/>
+        <ion-button class ="imageChange" fill="clear" (click)="selectImage()">
           <ion-icon name="camera" size="medium" color="primary"></ion-icon>
         </ion-button>
-      </div>
+      </ion-avatar>
     </div>
     <div class="mainContainer">
       <ion-grid class="topMargin">
         <ion-row>
           <ion-col class="gridWidth">
-            <ion-label class="text">First Name</ion-label>
             <ion-input
             name="firstName"
-            class="inputBox"
-            [class.focusInput]="focus['firstName']"
-            (ionFocus)="changeFocus('firstName')"
-            (ionBlur)="changeBlur('firstName')"
+            label="firstName"
+            label-placement="floating"
+            fill="outline"
             [(ngModel)]="userDetails['firstName']"
           ></ion-input>
         </ion-col>
         <ion-col class="gridWidth">
-          <ion-label class="text">Last Name</ion-label>
           <ion-input
             name="lastName"
-            class="inputBox"
-            [class.focusInput]="focus['lastName']"
-            (ionFocus)="changeFocus('lastName')"
-            (ionBlur)="changeBlur('lastName')"
+            label="lastName"
+            label-placement="floating"
+            fill="outline"
             [(ngModel)]="userDetails['lastName']"
           ></ion-input>
         </ion-col>
       </ion-row>
-    </ion-grid>
-    <ion-item class="email topMargin">
-      <ion-label class="text">Email</ion-label>
+      </ion-grid>
+      <ion-grid class="topMargin">
+    <ion-row>
       <ion-input
         name="email"
-        class="inputBox"
-        [class.focusInput]="focus['email']"
-        (ionFocus)="changeFocus('email')"
-        (ionBlur)="changeBlur('email')"
+        label="Email"
+        label-placement="floating"
+        fill="outline"
         [(ngModel)]="userDetails['email']"
       ></ion-input>
-      </ion-item>
+    </ion-row>
+    </ion-grid>
       <ion-grid class="topMargin">
         <!-- Add other fields like gender, phone, etc. here -->
       </ion-grid>

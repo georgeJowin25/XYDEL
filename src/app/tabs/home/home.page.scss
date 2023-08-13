@@ -1,3 +1,7 @@
+.ion-content{
+  display: flex;
+  align-items: center;
+}
 .top-container {
   display: flex;
   justify-content: space-between;
@@ -6,22 +10,16 @@
 }
 
 .location-icon {
-  cursor: pointer;
+ font-size: 20px;
 } 
 
 .profile-icon {
-  margin-right: 65px;
-}
-
-
-.address-container {
-  flex: 1;
-  margin-left: 20px;
+ font-size: 20px;
 }
 
 .address-text {
-  font-size: 10px;
-  margin-top: -20px;
+  margin-right: 50px;
+  font-size: 12px;
   font-family: 'Poppins-Bold';
 }
 

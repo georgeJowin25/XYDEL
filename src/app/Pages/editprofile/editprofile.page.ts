@@ -9,13 +9,6 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./editprofile.page.scss'],
 })
 export class EditprofilePage implements OnInit {
-  focus: { [key: string]: boolean } = {
-    firstName: false,
-    lastName: false,
-    email: false,
-    phone: false,
-    gender: false,
-  };
 
   userDetails = {
     firstName: '',
@@ -84,17 +77,6 @@ export class EditprofilePage implements OnInit {
     await this.saveUserDetails();
   }
 
-  changeFocus(input: keyof typeof EditprofilePage.prototype.focus) {
-    this.focus[input] = true;
-  }
-
-  changeBlur(input: keyof typeof EditprofilePage.prototype.focus) {
-    this.focus[input] = false;
-  }
-
-  changeDetails(key: keyof typeof EditprofilePage.prototype.userDetails, value: string) {
-    this.userDetails[key] = value;
-  }
 
   async logData() {
     await this.saveUserDetails();

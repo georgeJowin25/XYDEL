@@ -88,7 +88,4 @@ export class HomePage implements OnInit {
     this.router.navigate(['/tabs/order']);
   }
 
-  handleLocationIconClick() {
-    // Implement the location icon click logic here
-  }
 }

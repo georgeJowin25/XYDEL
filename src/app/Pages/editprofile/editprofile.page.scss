@@ -1,109 +1,69 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    background-color: white;
-  
-    .title {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      margin-top: 50px;
-      font-family: "Poppins-Regular";
-  
-      ion-icon {
-        position: absolute;
-        left: 0;
-      }
-  
-      .profileText {
-        font-size: 22px;
-        color: #000040;
-        font-family: "Poppins-Regular";
-      }
-    }
-  
-    .imageContainer {
-      margin-top: 45px;
-  
-      .profile {
-        display: flex;
-        flex-direction: row;
-        width: 120px;
-        height: 120px;
-        border-radius: 60px;
-  
-        ion-img {
-          width: 120px;
-          height: 120px;
-          border-radius: 75px;
-          border: 2px solid #000040;
-        }
-  
-        .imageChange {
-          position: absolute;
-          bottom: 2px;
-          right: 20px;
-          height: 30px;
-          width: 30px;
-          border-radius: 15px;
-          background-color: #ffffff;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-    }
-  
-    .mainContainer {
-      flex-direction: column;
-    }
-  
-    .topMargin {
-      margin-top: 40px;
-    }
-  
-    .grid {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-  
-    .gridWidth {
-      width: 48%;
-    }
-  
-    .text {
-      color: #000040;
-      font-family: "Poppins-Regular";
-    }
-  
-    .inputBox {
-      border: 1px solid #ced4da;
-      height: 35px;
-      padding: 0 20px;
-      font-family: "Poppins-Regular";
-      border-radius: 10px;
-    }
-  
-    .focusInput {
-      border-color: #000040;
-    }
-  
-    .submitButton {
-      margin-top: 40px;
-      width: 95%;
-      height: 40px;
-      align-items: center;
-      justify-content: center;
-      background-color: #000040;
-      border-radius: 10px;
-    }
-  
-    .submitText {
-      font-size: 17px;
-      color: white;
-      font-family: "Poppins-Regular";
-    }
-  }
-  
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+}
+
+.profileText {
+  font-size: 22px;
+  color: #000040;
+  font-family: "Poppins-Regular";
+}
+
+.imageContainer {
+  margin-top: 45px;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.profile-avatar img {
+  border-radius: 60px;
+  border: 2px solid #000040;
+}
+ion-icon{
+  font-size: 24px;
+}
+.imageChange {
+  position: absolute;
+  top: 140px;
+  left: 120px;
+  right: 50px;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.topMargin {
+  margin-top: 40px;
+}
+
+.gridWidth {
+  width: 48%;
+}
+
+.focusInput {
+  border-color: #000040;
+}
+
+.submitButton {
+  margin-top: 40px;
+  width: 95%;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  background-color: #000040;
+  border-radius: 10px;
+}
+
+.submitText {
+  font-size: 17px;
+  color: white;
+  font-family: "Poppins-Regular";
+}
