@@ -1,21 +1,44 @@
+ion-content{
+  display:flex;
+  align-items: center;
+}
+
+
+.title {
+  display:flex;
+
+ion-icon{
+  font-size: 30px;
+  color:black;
+}
+ion-title{
+  font-family: 'Poppins-Bold';
+  color: black;
+  position: relative;
+  right : 10px;
+}
+.help{
+  margin-left: 140px;
+}
+}
 .balance-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 60px;
   margin-bottom: 40px;
-}
 
 .balance-text {
   font-weight: bold;
   font-size: 18px;
 }
-
 .balance-amount {
   font-size: 20px;
 }
-
+}
 .item {
   margin-left: 10px;
 }
-
+.button{
+  margin-top: 20px;
+}
