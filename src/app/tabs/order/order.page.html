@@ -4,25 +4,32 @@
     <div><ion-title>Pick up or Send anything</ion-title></div>
   </div>
   <ion-list>
+    <div class="pick-button">
     <ion-button
-      class="overlay-button"
       expand="full"
       fill="solid"
       color="primary"
     >
-      <ion-icon name="arrow-up" slot="start"></ion-icon>
-      Set pick up location
+     <div  class="icon"><ion-icon name="arrow-up" slot="start"></ion-icon></div> 
+      <div class="text"> Set pick up location </div>
     </ion-button>
-    <ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon>
-    <ion-button
-      class="overlay-button"
-      expand="full"
-      fill="solid"
-      color="primary"
-    >
-      <ion-icon name="arrow-down" slot="start"></ion-icon>
-      Set drop location
-    </ion-button>
+    
+  </div>
+    <div class="vertical-icon">
+      <div><ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon></div>
+      <div><ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon></div>
+      <div><ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon></div>
+    </div>
+    <div class="drop-button">
+      <ion-button
+        expand="full"
+        fill="solid"
+        color="primary"
+      >
+       <div class="icon"><ion-icon name="arrow-down" slot="start"></ion-icon></div> 
+        <div class="text"> Set drop location </div>
+      </ion-button>
+    </div>
   </ion-list>
   <div class="notes">
     <ion-label class="notes-heading">Things to keep in mind</ion-label>

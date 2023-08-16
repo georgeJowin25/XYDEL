@@ -63,9 +63,10 @@ video {
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
-}
+    border-radius: 8px;
 ion-button{
   width: 350px;
+}
 }
 ion-icon {
   color: white;

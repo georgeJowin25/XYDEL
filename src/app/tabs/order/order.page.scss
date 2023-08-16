@@ -17,17 +17,47 @@ ion-title{
   right : 10px;
 }
 }
-.overlay-button {
-  
+.pick-button {
+  display : flex;
   margin-top: 20px;
-  padding: 8px 10px;
+  padding: 8px 5px;
   background-color: #000040;
   color: #ffffff;
   font-size: 14px;
-  text-align: left;
   font-family: "Poppins-Regular";
   border-radius: 8px;
+  .text{
+    margin-right: 15px;
+  }
+  .icon{
+    margin-right: 15px;
+    font-size: 18px;
+  }
 }
+
+.vertical-icon{
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+}
+
+.drop-button {
+  display : flex;
+  padding: 8px 5px;
+  background-color: #000040;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: "Poppins-Regular";
+  border-radius: 8px;
+  .text{
+    margin-right: 15px;
+  }
+  .icon{
+    margin-right: 15px;
+    font-size: 18px;
+  }
+}
+
 
 .notes {
   font-size: 15px;
