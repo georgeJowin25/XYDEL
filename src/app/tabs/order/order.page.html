@@ -1,36 +1,52 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Pick up or Send anything</ion-title>
-  </ion-toolbar>
-</ion-header>
 <ion-content class="ion-padding">
+  <div class="title">
+    <div><ion-icon name="bicycle-sharp"></ion-icon></div>
+    <div><ion-title>Pick up or Send anything</ion-title></div>
+  </div>
   <ion-list>
-    <ion-item>
+    <ion-button
+      class="overlay-button"
+      expand="full"
+      fill="solid"
+      color="primary"
+    >
       <ion-icon name="arrow-up" slot="start"></ion-icon>
-      <ion-input placeholder="Pick Up Location" clearInput></ion-input>
-    </ion-item>
-    <ion-item-divider>
-      <ion-icon name="ellipsis-horizontal" slot="start"></ion-icon>
-    </ion-item-divider>
-    <ion-item>
+      Set pick up location
+    </ion-button>
+    <ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon>
+    <ion-button
+      class="overlay-button"
+      expand="full"
+      fill="solid"
+      color="primary"
+    >
       <ion-icon name="arrow-down" slot="start"></ion-icon>
-      <ion-input placeholder="Deliver Location" clearInput></ion-input>
-    </ion-item>
+      Set drop location
+    </ion-button>
   </ion-list>
-  <ion-button expand="full" color="primary" (click)="pickUp()">Pick up</ion-button>
   <div class="notes">
     <ion-label class="notes-heading">Things to keep in mind</ion-label>
-    <ion-item>
-      <ion-icon name="checkmark-circle" slot="start" color="success"></ion-icon>
-      <ion-label>Items should fit in the backpack.</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="checkmark-circle" slot="start" color="success"></ion-icon>
-      <ion-label>Keep the items packed and ready for pick up.</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="close-circle" slot="start" color="danger"></ion-icon>
-      <ion-label>Avoid sending illegal, fragile, or high-value items.</ion-label>
-    </ion-item>
+    <div class="notes-content">
+      <div class="notes-item">
+        <ion-icon
+          name="checkmark-circle"
+          slot="start"
+          color="success"
+        ></ion-icon>
+        <ion-label>Items should fit in the backpack.</ion-label>
+      </div>
+      <div class="notes-item">
+        <ion-icon
+          name="checkmark-circle"
+          slot="start"
+          color="success"
+        ></ion-icon>
+        <ion-label>Keep the items packed and ready for pick up.</ion-label>
+      </div>
+      <div class="notes-item">
+        <ion-icon name="close-circle" slot="start" color="danger"></ion-icon>
+        <ion-label>Avoid sending illegal or fragile items.</ion-label>
+      </div>
+    </div>
   </div>
 </ion-content>

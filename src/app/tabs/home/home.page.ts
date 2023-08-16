@@ -30,6 +30,20 @@ export class HomePage implements OnInit {
 
     this.requestNotificationPermissions();
   }  
+  carouselItems = [
+    {
+      id: "01",
+      image: "../assets/Images/slide1.png",
+      title: "Fast and Reliable Delivery",
+      description: "Get your orders delivered in record time with our reliable delivery service.",
+    },
+    {
+      id: "02",
+      image: "../assets/Images/slide2.png",
+      title: "Track Your Deliveries",
+      description: "Easily track your deliveries in real-time and know when to expect them.",
+    },
+  ];
   couponsData = [
     {
       id: 1,
@@ -45,9 +59,9 @@ export class HomePage implements OnInit {
     },
     {
       id: 3,
-      text: '50% off on your Next Purchase',
+      text: '50% off on your Purchase',
       code: 'HALFOFF',
-      iconName: 'percent-outline',
+      iconName: 'flash-outline',
     },
   ];
   async requestNotificationPermissions() {

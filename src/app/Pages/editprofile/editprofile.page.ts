@@ -67,6 +67,7 @@ export class EditprofilePage implements OnInit {
       resultType: CameraResultType.Uri,
       source: CameraSource.Photos,
       quality: 100,
+      allowEditing: true,
       width: 300,
       height: 300,
     });

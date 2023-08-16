@@ -1,39 +1,54 @@
-<ion-content [fullscreen]="true" scrollY="false">
+<ion-content>
   <div class="top-container">
-    <ion-buttons slot="start" class="location-icon">
-      <ion-button >
-        <ion-icon name="location-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <p class="address-text">{{ address }}</p>
+    <div class="container">
+      <div class="location-icon">
+        <ion-buttons slot="start" >
+          <ion-button>
+            <ion-icon name="location-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+      <div class="address-text"><p>{{ address }}</p></div>
       <div class="profile-icon">
         <ion-buttons slot="end">
           <ion-button (click)="navigateToUserProfile()">
             <ion-icon name="person-circle-outline" slot="icon-only"></ion-icon>
           </ion-button>
         </ion-buttons>
+      </div>
+    </div>
+    <div class="img-slider">
+      <swiper-container [loop]="true" [autoplay]="{ delay: 3000 }">
+        <swiper-slide *ngFor="let item of carouselItems">
+          <ion-row class="img-item">
+            <ion-col>
+              <img [src]="item.image" alt="Carousel Image" />
+            </ion-col>
+            <ion-col>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.description }}</p>
+            </ion-col>
+          </ion-row>
+        </swiper-slide>
+      </swiper-container>
     </div>
   </div>
-  <div>
-    <swiper-container [loop]="true" [autoplay]="{ delay: 3000 }">
-      <swiper-slide><img src="assets\Images\slide1.png" /></swiper-slide>
-      <swiper-slide><img src="assets\Images\slide2.png" /></swiper-slide>
-    </swiper-container>
-  </div>
-  <div>
+  <div class = "coupon-slider">
     <swiper-container [loop]="true" [autoplay]="{ delay: 3000 }">
       <swiper-slide *ngFor="let item of couponsData">
         <ion-row class="coupon-item">
-          <ion-icon [name]="item.iconName" class="gift-icon"></ion-icon>
+          <ion-icon [name]="item.iconName" class="icon"></ion-icon>
           <ion-label class="coupon-text">{{ item.text }}</ion-label>
+          <p>USE CODE {{item.code}} AT CHECKOUT</p>
         </ion-row>
       </swiper-slide>
     </swiper-container>
   </div>
-  <div class="bottom-bar">
-    <div class="bottom-overlay">
-      <p class="overlay-text">Pick up or send anything</p>
-      <ion-button
+  <div class="bottom-container">
+    <div class="bottom-Box">
+      <h3>Pick up or send anything</h3>
+      <p>Sit back,relax and let XYDEL do the rest</p>
+      <ion-button class="overlay-button"
         (click)="navigateToOrder()"
         expand="full"
         fill="solid"

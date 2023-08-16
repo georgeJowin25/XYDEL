@@ -1,14 +1,8 @@
-<ion-header>
-  <ion-toolbar>
+<ion-content>
+  <div class="container">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/profile"></ion-back-button>
     </ion-buttons>
-    <ion-title class="profileText">Profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="container">
     <div class="imageContainer">
       <ion-avatar class="profile-avatar">
         <img [src]="image ? image : 'assets/Images/profile.jpg'"/>

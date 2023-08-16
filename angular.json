@@ -31,6 +31,7 @@
                 "output": "./svg"
               }
             ],
+            "allowedCommonJsDependencies": ["localforage"],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
             "scripts": []
           },
@@ -145,4 +146,5 @@
       "styleext": "scss"
     }
   }
+  
 }
