@@ -1,22 +1,44 @@
+ion-content {
+  display: flex;
+  align-items: center;
+}
+.top-container {
+  display: flex;
+ 
+  .title {
+    font-family: "Poppins-Bold";
+    margin-left: 90px;
+  }
+  ion-icon{
+    font-size: 24px;
+  }
+}
+
 .profile-card {
-  margin: 20px;
+  margin: 30px;
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+  .profile-avatar img {
+    border-radius: 60px;
+    border: 1px solid #000040;
+  }
+  ion-label {
+    text-align: center;
+    font-family: "Poppins-Regular";
+  }
+
+  .edit-button {
+    margin-left: 60px;
+    --border-radius: 8px;
+    --padding-end: 40px;
+    --padding-start: 40px;
+  }
 }
 
-.profile-avatar {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto;
-}
-
-.profile-avatar img {
-  border-radius: 60px;
-  border: 2px solid #000040;
-}
-
-.edit-button {
-  margin: 15px;
-}
-
-.options-list {
-  margin: 0 20px;
+.bottom-container {
+  margin-top: 20px;
 }

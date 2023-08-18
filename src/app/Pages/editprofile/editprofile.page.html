@@ -1,69 +1,84 @@
 <ion-content>
   <div class="container">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/profile"></ion-back-button>
-    </ion-buttons>
-    <div class="imageContainer">
-      <ion-avatar class="profile-avatar">
-        <img [src]="image ? image : 'assets/Images/profile.jpg'"/>
-        <ion-button class ="imageChange" fill="clear" (click)="selectImage()">
-          <ion-icon name="camera" size="medium" color="primary"></ion-icon>
-        </ion-button>
-      </ion-avatar>
+    <div>
+      <ion-buttons slot="start" (click)="handleBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-buttons>
     </div>
-    <div class="mainContainer">
-      <ion-grid class="topMargin">
-        <ion-row>
-          <ion-col class="gridWidth">
-            <ion-input
-            name="firstName"
-            label="firstName"
-            label-placement="floating"
-            fill="outline"
+    <div class="title"><ion-title>Edit Profile</ion-title></div>
+  </div>
+  <div class="image-container">
+    <ion-avatar class="profile-avatar">
+      <img [src]="image ? image : 'assets/Images/profile.jpg'" />
+      <ion-button class="imageChange" fill="clear" (click)="selectImage()">
+        <ion-icon name="camera" size="medium" color="primary"></ion-icon>
+      </ion-button>
+    </ion-avatar>
+  </div>
+
+  <div class="main-container">
+    <ion-list>
+      <div>
+        <ion-item class="input-item">
+          <ion-label position="floating">First Name</ion-label>
+          <ion-icon name="person" slot="start"></ion-icon>
+          <ion-input
+            placeholder="First Name"
             [(ngModel)]="userDetails['firstName']"
           ></ion-input>
-        </ion-col>
-        <ion-col class="gridWidth">
+        </ion-item>
+      </div>
+      <div>
+        <ion-item class="input-item">
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-icon name="person" slot="start"></ion-icon>
           <ion-input
-            name="lastName"
-            label="lastName"
-            label-placement="floating"
-            fill="outline"
+            placeholder="Last Name"
             [(ngModel)]="userDetails['lastName']"
           ></ion-input>
-        </ion-col>
-      </ion-row>
-      </ion-grid>
-      <ion-grid class="topMargin">
-    <ion-row>
-      <ion-input
-        name="email"
-        label="Email"
-        label-placement="floating"
-        fill="outline"
-        [(ngModel)]="userDetails['email']"
-      ></ion-input>
-    </ion-row>
-    </ion-grid>
-      <ion-grid class="topMargin">
-        <!-- Add other fields like gender, phone, etc. here -->
-      </ion-grid>
+        </ion-item>
+      </div>
+    </ion-list>
+    <div>
+      <ion-item class="input-item">
+        <ion-label position="floating">Email</ion-label>
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-input
+          placeholder="Email"
+          [(ngModel)]="userDetails['email']"
+          type="email"
+        ></ion-input>
+      </ion-item>
     </div>
-
-    <ion-grid class="topMargin">
-      <ion-row>
-        <ion-col>
-          <ion-button
-            expand="full"
-            (click)="logData()"
-            color="primary"
-            class="submitButton"
+    <div>
+      <ion-item class="input-item">
+        <ion-label position="floating">Phone</ion-label>
+        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-input
+          placeholder="Phone"
+          [(ngModel)]="userDetails['phone']"
+          type="tel"
+          pattern="^[0-9]{10}$"
+        ></ion-input>
+      </ion-item>
+    </div>
+    <div>
+      <ion-item class="input-item">
+        <ion-label position="floating">Gender</ion-label>
+        <ion-icon name="male-female" slot="start"></ion-icon>
+        <ion-select [(ngModel)]="userDetails['gender']">
+          <ion-select-option
+            placeholder="Select Gender"
+            label="select"
+            *ngFor="let gender of genderData"
+            [value]="gender.value"
+            >{{ gender.value }}</ion-select-option
           >
-            <ion-label class="submitText">Save</ion-label>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+        </ion-select>
+      </ion-item>
+    </div>
+    <ion-button (click)="logData()" color="primary" class="topMargin">
+      Save
+    </ion-button>
   </div>
 </ion-content>
-

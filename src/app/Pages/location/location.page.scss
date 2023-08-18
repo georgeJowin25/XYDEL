@@ -30,3 +30,8 @@ ion-content{
     height: 300px;
   }
   
+  ion-button{
+    border-radius: 8px;
+    --padding-start:30px;
+    --padding-end:30px;
+  }

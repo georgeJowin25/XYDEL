@@ -39,6 +39,10 @@ ion-title{
 .item {
   margin-left: 10px;
 }
-.button{
+ion-button{
   margin-top: 20px;
+  margin-left:100px;
+  border-radius: 8px;
+  --padding-start:36px;
+  --padding-end:36px;
 }

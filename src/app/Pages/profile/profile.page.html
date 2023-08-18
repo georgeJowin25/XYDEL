@@ -1,47 +1,51 @@
-<ion-content>
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/tabs"></ion-back-button>
+<ion-content class="ion-padding">
+  <div class="top-container">
+    <div>
+      <ion-buttons slot="start" (click)="handleBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-buttons>
-      <ion-title>Profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-card class="profile-card">
-    <ion-card-content>
+    </div>
+    <div class="title"><ion-title>My Profile</ion-title></div>
+  </div>
+  <div class="profile-card">
+    <div>
       <ion-avatar class="profile-avatar">
-        <img [src]="image ? image : 'assets/Images/profile.jpg'"/>
+        <img [src]="image ? image : 'assets/Images/profile.jpg'" />
       </ion-avatar>
       <ion-list>
-        <ion-item>
-          <ion-label>
-            <h2>{{ firstName }} {{ lastName }}</h2>
-            <p>{{ email }}</p>
-          </ion-label>
-        </ion-item>
+        <ion-label>
+          <h2>{{ firstName }} {{ lastName }}</h2>
+          <p>{{ email }}</p>
+        </ion-label>
       </ion-list>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-button expand="block" class="edit-button" (click)="navigateToEditProfile()">
-    <ion-icon name="pencil"></ion-icon>
-    Edit Profile
-  </ion-button>
-
-  <ion-list class="options-list">
-    <ion-item (click)="navigateToSettings()">
-      <ion-icon name="settings" slot="start"></ion-icon>
-      <ion-label>Settings</ion-label>
-    </ion-item>
-    <ion-item (click)="navigateToInformation()">
-      <ion-icon name="information-circle" slot="start"></ion-icon>
-      <ion-label>Information</ion-label>
-    </ion-item>
-    <ion-item (click)="handleLogout()">
-      <ion-icon name="log-out" slot="start" color="danger"></ion-icon>
-      <ion-label color="danger">Logout</ion-label>
-    </ion-item>
-  </ion-list>
+    </div>
+    <ion-button class="edit-button" (click)="navigateToEditProfile()">
+      <ion-icon name="pencil" slot="start"></ion-icon>
+      Edit Profile
+    </ion-button>
+  </div>
+  <div class="bottom-container">
+    <ion-list class="options-list">
+      <ion-item lines="none" detail="true" (click)="navigateToSettings()">
+        <ion-icon color="primary" name="settings" slot="start"></ion-icon>
+        <ion-label>Settings</ion-label>
+      </ion-item>
+      <ion-item lines="none" detail="true" (click)="navigateToInformation()">
+        <ion-icon
+          color="primary"
+          name="information-circle"
+          slot="start"
+        ></ion-icon>
+        <ion-label>Information</ion-label>
+      </ion-item>
+      <ion-item lines="none" detail="true" (click)="navigateToInformation()">
+        <ion-icon color="primary" name="help-circle" slot="start"></ion-icon>
+        <ion-label>Help & Support</ion-label>
+      </ion-item>
+      <ion-item lines="none" detail="true" (click)="handleLogout()">
+        <ion-icon name="log-out" slot="start" color="danger"></ion-icon>
+        <ion-label color="danger">Logout</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
-

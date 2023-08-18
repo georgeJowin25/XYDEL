@@ -1,69 +1,61 @@
+ion-content{
+  display: flex;
+  text-align: center;
+}
+
+ion-icon{
+  font-size: 25px;
+}
 .container {
   display: flex;
-  flex-direction: column;
   padding: 20px;
-  background-color: white;
-}
 
-.profileText {
-  font-size: 22px;
-  color: #000040;
-  font-family: "Poppins-Regular";
+  .title{
+    font-family: "Poppins-Bold" ;
+    margin-left: 80px;
+  }
 }
-
-.imageContainer {
-  margin-top: 45px;
-}
+.image-container{
 
 .profile-avatar {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
 }
-
 .profile-avatar img {
   border-radius: 60px;
-  border: 2px solid #000040;
-}
-ion-icon{
-  font-size: 24px;
+  border: 1px solid #000040;
 }
 .imageChange {
-  position: absolute;
-  top: 190px;
-  left: 120px;
-  right: 50px;
+  position: relative;
+  bottom: 35px;
+  left:20px;
+}
 }
 
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-}
+.main-container {
+  padding: 50px 20px;
 
-.topMargin {
-  margin-top: 40px;
-}
+  .input-item {
+    --border-radius: 10px;
+    --padding-start: 16px;
 
-.gridWidth {
-  width: 48%;
-}
+    ion-label {
+      color: #333;
+      font-weight: bold;
+    }
 
-.focusInput {
-  border-color: #000040;
-}
+    ion-icon {
+      color: #999;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+  }
 
-.submitButton {
-  margin-top: 40px;
-  width: 95%;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  background-color: #000040;
-  border-radius: 10px;
-}
-
-.submitText {
-  font-size: 17px;
-  color: white;
-  font-family: "Poppins-Regular";
+  ion-button {
+    margin-top: 20px;
+    --border-radius: 8px;
+    --padding-start:36px;
+    --padding-end: 36px;
+  }
 }

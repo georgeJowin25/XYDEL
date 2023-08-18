@@ -13,6 +13,7 @@ export class ProfilePage implements OnInit {
   lastName: string | null = null;
   email: string | null = null;
   image: string | null = null;
+ 
 
   constructor(private navCtrl: NavController, private route: ActivatedRoute, private storage: Storage) {}
 
@@ -29,7 +30,9 @@ export class ProfilePage implements OnInit {
       }
     });
   }
-
+  handleBack(){
+    this.navCtrl.navigateBack(['/tabs/home']);
+  }
   async loadUserDetails() {
     try {
       const storedUserDetails = await this.storage.get('user_details');
@@ -45,7 +48,7 @@ export class ProfilePage implements OnInit {
       console.log('Error loading user details from Storage:', error);
     }
   }
-
+  
   navigateToEditProfile() {
     this.navCtrl.navigateForward(['/editprofile']);
   }

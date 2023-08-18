@@ -34,6 +34,10 @@ export class EditprofilePage implements OnInit {
     this.loadUserDetails();
   }
 
+  handleBack(){
+    this.router.navigate(['/profile']);
+  }
+
   async loadUserDetails() {
     try {
       const storedUserDetails = await this.storage.get('user_details');
