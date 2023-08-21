@@ -2,9 +2,6 @@ $color_1: white;
 $font-family_1: "Poppins-Bold";
 $font-family_2: "Poppins-Regular";
 
-ion-content {
-  align-items: center;
-}
 video {
   position: absolute;
   top: 0;
@@ -65,13 +62,14 @@ video {
     margin-top: 10px;
    
 ion-button{
-  border-radius: 8px;
-  --padding-start: 36px;
-  --padding-end: 36px;
+  --border-radius: 8px;
+  --padding-start: 46px;
+  --padding-end: 46px;
 }
-}
+
 ion-icon {
   color: white;
   font-size: 24px;
   margin-left: 10px;
+}
 }
