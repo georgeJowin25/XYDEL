@@ -8,7 +8,12 @@
           </ion-button>
         </ion-buttons>
       </div>
-      <div class="address-text"><p>{{ address }}</p></div>
+      <div class="address-text">
+        <ng-container *ngIf="address; else loadingTemplate">
+          <p>{{ address }}</p>
+        </ng-container>
+        <ng-template #loadingTemplate><p>Locating...</p></ng-template>
+      </div>
       <div class="profile-icon">
         <ion-buttons slot="end">
           <ion-button (click)="navigateToUserProfile()">

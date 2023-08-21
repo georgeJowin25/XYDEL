@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { MobileNumberPageRoutingModule } from './mobile-number-routing.module';
 import { MobileNumberPage } from './mobile-number.page';
 import { HttpClientModule } from '@angular/common/http';
-import { OtpService } from './Api.Services';
+import { OtpService } from './Api.Service';
 
 
 

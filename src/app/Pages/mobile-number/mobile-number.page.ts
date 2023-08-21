@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { OtpService } from './Api.Services';
+import { OtpService } from './Api.Service';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 

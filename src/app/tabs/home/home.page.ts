@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Position } from '@capacitor/geolocation';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Position } from '@capacitor/geolocation'; // Import Position instead of GeolocationPosition
 import { Geolocation } from '@capacitor/geolocation';
-import { PushNotifications } from '@capacitor/push-notifications';
-import { Subscription } from 'rxjs';
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from '@capacitor/push-notifications';
+import { Subscription, interval } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -13,35 +19,21 @@ register();
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
-  address: string = '';
-  pinCode: string = '';
-  showCouponPopup: boolean = false;
-  private subscription: Subscription = new Subscription();
-
-  
-  constructor(private router: Router, private route: ActivatedRoute) {}
-  ngOnInit() {
-    this.subscription.add(
-      this.route.queryParams.subscribe((params) => {
-        this.address = params['address'];
-      })
-    );
-
-    this.requestNotificationPermissions();
-  }  
+export class HomePage implements OnInit, OnDestroy {
   carouselItems = [
     {
-      id: "01",
-      image: "../assets/Images/slide1.png",
-      title: "Fast and Reliable Delivery",
-      description: "Get your orders delivered in record time with our reliable delivery service.",
+      id: '01',
+      image: '../assets/Images/slide1.png',
+      title: 'Fast and Reliable Delivery',
+      description:
+        'Get your orders delivered in record time with our reliable delivery service.',
     },
     {
-      id: "02",
-      image: "../assets/Images/slide2.png",
-      title: "Track Your Deliveries",
-      description: "Easily track your deliveries in real-time and know when to expect them.",
+      id: '02',
+      image: '../assets/Images/slide2.png',
+      title: 'Track Your Deliveries',
+      description:
+        'Easily track your deliveries in real-time and know when to expect them.',
     },
   ];
   couponsData = [
@@ -64,20 +56,70 @@ export class HomePage implements OnInit {
       iconName: 'flash-outline',
     },
   ];
-  async requestNotificationPermissions() {
-    try {
-      let permStatus = await PushNotifications.checkPermissions();
-      if (permStatus.receive === 'prompt') {
-        permStatus = await PushNotifications.requestPermissions();
-      }
+  address: string = '';
+  private subscription: Subscription = new Subscription();
+  private routerSubscription: Subscription = new Subscription();
+  private locationUpdateSubscription: Subscription = new Subscription();
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.subscription.add(
+      this.route.queryParams.subscribe((params) => {
+        this.address = params['address'];
+      })
+    );
     
-      if (permStatus.receive === 'granted') {
-        console.log('Notification permission granted');
-      } else {
-        console.log('Notification permission denied');
+    this.registerNotifications();
+    // Update location on initial load
+    this.updateLocation();
+
+    // Subscribe to router events to trigger location updates when switching tabs
+    this.routerSubscription = this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.updateLocation();
+      });
+
+    // Start updating location every 5 seconds
+    this.locationUpdateSubscription = interval(5000).subscribe(() => {
+      this.updateLocation();
+    });
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from subscriptions to prevent memory leaks
+    this.subscription.unsubscribe();
+    this.routerSubscription.unsubscribe();
+    this.locationUpdateSubscription.unsubscribe();
+  }
+
+  async updateLocation() {
+    try {
+      const position: Position = await Geolocation.getCurrentPosition(); // Use Position type
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      // Update the location or perform any other actions
+      console.log('New location:', latitude, longitude);
+      const address = await this.reverseGeocode(latitude, longitude);
+      if (address) {
+        const { suburb, city, state, country, postcode } = address;
+        this.address = ` ${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
       }
     } catch (error) {
-      console.error('Error requesting notification permissions:', error);
+      console.error('Error updating location:', error);
+    }
+  }   
+
+  async registerNotifications () {
+    let permStatus = await PushNotifications.checkPermissions();
+  
+    if (permStatus.receive === 'prompt') {
+      permStatus = await PushNotifications.requestPermissions();
+    }
+  
+    if (permStatus.receive !== 'granted') {
+      throw new Error('User denied permissions!');
     }
   }
 
@@ -101,5 +143,4 @@ export class HomePage implements OnInit {
   navigateToOrder() {
     this.router.navigate(['/tabs/order']);
   }
-
 }

@@ -25,7 +25,7 @@ async handleAllowLocation() {
           console.log(addressResponse);
           const { suburb, city, state, country, postcode} = addressResponse;
           const formattedAddress = `${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
-          this.router.navigate(['/tabs'], {
+          this.router.navigate(['/tabs/home'], {
             queryParams: { address: formattedAddress },
           });
         } else {
