@@ -5,6 +5,7 @@ import { OtpService } from './Api.Service';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-otp',
@@ -26,8 +27,9 @@ export class OtpPage implements OnInit, OnDestroy {
   constructor(
     private navCtrl: NavController,
     private route: ActivatedRoute,
-    private router : Router,
-    private otpService: OtpService // Inject the OtpService
+    private router: Router,
+    private otpService: OtpService,
+    private storage: Storage // Inject the OtpService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class OtpPage implements OnInit, OnDestroy {
         this.mobileNumber = params['mobileNumber'];
       })
     );
-
+    this.initStorage(); // Initialize Ionic Storage
     // Start the timer
     this.startTimer();
   }
@@ -46,6 +48,10 @@ export class OtpPage implements OnInit, OnDestroy {
     // Clear the timer interval before destroying the component
     this.clearTimer();
     this.subscription.unsubscribe();
+  }
+
+  async initStorage() {
+    await this.storage.create(); // Initialize Ionic Storage
   }
 
   handleOtpChange(text: number) {
@@ -64,32 +70,32 @@ export class OtpPage implements OnInit, OnDestroy {
     }
   }
 
-
   handleVerifyOTP() {
-    this.router.navigate(['/location'] );
+    this.router.navigate(['/location']);
     this.subscription.add(
-      this.otpService.verifyOTP(this.mobileNumber, this.otp)
+      this.otpService
+        .verifyOTP(this.mobileNumber, this.otp)
         .pipe(
           tap((response: any) => {
             console.log('API Response:', response); // Add this log to inspect the response
-            
+
             if (response.status === 'OK') {
+              const id = response.data.id;
+              this.storage.set('id', id).catch((error) => {
+                console.error('Error saving id:', error);
+              });
               // OTP is valid, navigate to the location screen
-             this.router.navigate(['/location'] );
+              this.router.navigate(['/location']);
             } else if (
               response.status === 'INTERNAL_SERVER_ERROR' &&
               response.message === 'Otp Expired.Please Generate The New OTP'
-
-            )
-             {
+            ) {
               // OTP is expired, enable resend and show error message
               this.setResendDisabled(false);
               this.errorMessage = response.message || 'OTP verification failed';
-              
             } else {
               // OTP is invalid, show error message
               this.errorMessage = response.message || 'OTP verification failed';
-              
             }
           })
         )

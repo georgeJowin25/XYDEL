@@ -10,15 +10,16 @@
   <div class="profile-card">
     <div>
       <ion-avatar class="profile-avatar">
-        <img [src]="image ? image : 'assets/Images/profile.jpg'" />
+        <img [src]="userDetails.userProfileDoc ? userDetails.userProfileDoc : 'assets/Images/profile.jpg'" />
       </ion-avatar>
       <ion-list>
         <ion-label>
-          <h2>{{ firstName }} {{ lastName }}</h2>
-          <p>{{ email }}</p>
+          <h2>{{ userDetails.firstName }} {{ userDetails.lastName }}</h2>
+          <p>{{ userDetails.emailId }}</p>
         </ion-label>
       </ion-list>
     </div>
+    
     <ion-button class="edit-button" (click)="navigateToEditProfile()">
       <ion-icon name="pencil" slot="start"></ion-icon>
       Edit Profile

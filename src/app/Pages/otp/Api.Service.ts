@@ -20,7 +20,7 @@ export class OtpService {
       'Content-Type': 'application/json',
     });
 
-    return this.http.post(`${this.apiUrl}/verify`, requestBody, { headers });
+    return this.http.post(`${this.apiUrl}/otp/verify`, requestBody, { headers });
   }
 
   resendOTP(mobileNumber: number): Observable<any> {
@@ -28,6 +28,6 @@ export class OtpService {
       'Content-Type': 'application/json',
     });
 
-    return this.http.post(`${this.apiUrl}`, { mobileNumber }, { headers });
+    return this.http.post(`${this.apiUrl}/otp`, { mobileNumber }, { headers });
   }
 }

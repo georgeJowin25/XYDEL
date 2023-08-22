@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { profileService } from './Api.Service';
+import { tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -9,46 +10,66 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  firstName: string | null = null;
-  lastName: string | null = null;
-  email: string | null = null;
-  image: string | null = null;
- 
+  userDetails = {
+    firstName: '',
+    lastName: '',
+    mobileNumber: '',
+    alternatemobileNumber: '',
+    emailId: '',
+    gender: '',
+    userProfileDoc: '',
+  };
 
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private storage: Storage) {}
+  constructor(
+    private navCtrl: NavController,
+    private profileService: profileService,
+    private storage: Storage
+  ) {}
 
   async ngOnInit() {
-    await this.storage.create();
+    await this.initStorage();
     this.loadUserDetails();
-    this.route.queryParams.subscribe((params) => {
-      if (params['userDetails']) {
-        const userDetails = JSON.parse(params['userDetails']);
-        this.firstName = userDetails.firstName;
-        this.lastName = userDetails.lastName;
-        this.email = userDetails.email;
-        this.image = userDetails.profileImage;
-      }
-    });
   }
-  handleBack(){
+  async initStorage() {
+    await this.storage.create(); // Initialize Ionic Storage
+  }
+  handleBack() {
     this.navCtrl.navigateBack(['/tabs/home']);
   }
   async loadUserDetails() {
     try {
-      const storedUserDetails = await this.storage.get('user_details');
-      if (storedUserDetails) {
-        const { firstName, lastName, email, profileImage } =
-          JSON.parse(storedUserDetails);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.image = profileImage;
+      const id = await this.storage.get('id');
+      if (id !== null) {
+        this.profileService
+          .getUserDetails(id)
+          .pipe(
+            tap({
+              next: (response) => {
+                const user = response.data[0]; // Assuming data is an array with a single user object
+                this.userDetails = {
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  mobileNumber: user.mobileNumber,
+                  alternatemobileNumber: user.alternateMobileNumber,
+                  emailId: user.emailId,
+                  gender: user.gender,
+                  userProfileDoc: user.userProfileDoc,
+                };
+              },
+              error: (error) => {
+                console.error('Error loading user details:', error);
+              },
+            })
+          )
+          .subscribe();
+      } else {
+        console.error('No id found in storage');
       }
     } catch (error) {
-      console.log('Error loading user details from Storage:', error);
+      console.error('Error retrieving id from storage:', error);
     }
   }
-  
+
   navigateToEditProfile() {
     this.navCtrl.navigateForward(['/editprofile']);
   }

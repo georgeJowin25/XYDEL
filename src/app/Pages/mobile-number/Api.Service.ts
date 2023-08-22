@@ -20,7 +20,7 @@ export class OtpService {
 
     const body = JSON.stringify({ mobileNumber });
 
-    return this.http.post(this.apiUrl, body, { headers }).pipe(
+    return this.http.post(`${this.apiUrl}/otp`, body, { headers }).pipe(
       tap(response => {
         // Handle any side effects you need, like logging or modifying data, using tap operator.
         console.log('Response received:', response);

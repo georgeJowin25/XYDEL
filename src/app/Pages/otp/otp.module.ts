@@ -6,6 +6,8 @@ import { OtpPage } from './otp.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OtpService } from './Api.Service';
+import { IonicStorageModule } from '@ionic/storage-angular';
+
 
 @NgModule({
   imports: [
@@ -14,7 +16,8 @@ import { OtpService } from './Api.Service';
     IonicModule,
     OtpPageRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
   ],
   declarations: [OtpPage],
   providers: [OtpService]

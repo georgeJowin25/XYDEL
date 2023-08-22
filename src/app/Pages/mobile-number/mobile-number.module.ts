@@ -9,6 +9,7 @@ import { OtpService } from './Api.Service';
 
 
 
+
 @NgModule({
   imports: [
     CommonModule, 
@@ -17,6 +18,7 @@ import { OtpService } from './Api.Service';
     MobileNumberPageRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+   
   ],
   declarations: [MobileNumberPage],
   providers: [OtpService],

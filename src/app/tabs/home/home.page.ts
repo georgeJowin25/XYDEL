@@ -82,9 +82,9 @@ export class HomePage implements OnInit, OnDestroy {
       });
 
     // Start updating location every 5 seconds
-    this.locationUpdateSubscription = interval(5000).subscribe(() => {
-      this.updateLocation();
-    });
+    // this.locationUpdateSubscription = interval(5000).subscribe(() => {
+    //   this.updateLocation();
+    // });
   }
 
   ngOnDestroy() {

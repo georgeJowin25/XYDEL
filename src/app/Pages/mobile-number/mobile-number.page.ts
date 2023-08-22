@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { OtpService } from './Api.Service';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+
 
 @Component({
   selector: 'app-mobile-number',
@@ -16,9 +17,9 @@ export class MobileNumberPage {
 
   constructor(
     private router: Router,
-    private otpService: OtpService // Inject the OtpService
+    private otpService: OtpService,// Inject the OtpService
+    
   ) {}
-
   handleNumberChange(text: string) {
     const numberString = String(text); // Convert the number to a string
     if (numberString.length === 10) {

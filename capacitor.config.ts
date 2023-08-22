@@ -1,4 +1,5 @@
 import { CapacitorConfig } from '@capacitor/cli';
+import { environment } from 'src/environments/environment';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
@@ -8,7 +9,7 @@ const config: CapacitorConfig = {
     androidScheme: 'http',
     cleartext: true,
     allowNavigation: [
-      "http://192.168.29.232:7001/xydel/app/v1/otp"
+      environment.apiBase,
     ]
   },
   plugins: {

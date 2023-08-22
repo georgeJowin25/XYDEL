@@ -39,6 +39,11 @@ const routes: Routes = [
     path: 'editprofile',
     loadChildren: () => import('./Pages/editprofile/editprofile.module').then( m => m.EditprofilePageModule)
   },
+  {
+    path: 'pick-up-location',
+    loadChildren: () => import('./Pages/pick-up-location/pick-up-location.module').then( m => m.PickUpLocationPageModule)
+  },
+
 
 
 
