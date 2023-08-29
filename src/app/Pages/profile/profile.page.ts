@@ -58,7 +58,6 @@ export class ProfilePage implements OnInit {
       console.error('Error retrieving id from storage:', error);
     }
   }
-
   navigateToEditProfile() {
     this.navCtrl.navigateForward(['/editprofile']);
   }

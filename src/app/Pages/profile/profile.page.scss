@@ -4,12 +4,12 @@ ion-content {
 }
 .top-container {
   display: flex;
- 
+
   .title {
     font-family: "Poppins-Bold";
     margin-left: 90px;
   }
-  ion-icon{
+  ion-icon {
     font-size: 24px;
   }
 }
@@ -29,19 +29,21 @@ ion-content {
     text-align: center;
     font-family: "Poppins-Regular";
   }
-
- ion-button{
+  ion-button {
     margin-left: 85px;
     --border-radius: 8px;
     --padding-end: 15px;
     --padding-start: 15px;
+    ion-icon{
+      margin-bottom:  8px;
+    }
   }
 }
 
 .bottom-container {
   margin-top: 20px;
 
-  ion-item{ 
+  ion-item {
     margin-bottom: 20px;
   }
 }

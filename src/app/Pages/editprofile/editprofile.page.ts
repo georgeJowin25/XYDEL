@@ -142,9 +142,8 @@ export class EditprofilePage implements OnInit {
           .sendUserDetails(formValue,id)
           .pipe(
             tap((response: any) => {
-              console.log('API Response:', response);
               if (response.message === 'User Added Successfully') {
-                console.log('API Response:', response);
+                this.router.navigate(['/tabs/home']);
               } else if (
                 response.status === 'INTERNAL_SERVER_ERROR' &&
                 response.message === 'User Not Found'
