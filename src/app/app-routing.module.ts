@@ -45,7 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'drop-location',
-    loadChildren: () => import('./drop-location/drop-location.module').then( m => m.DropLocationPageModule)
+    loadChildren: () => import('./Pages/drop-location/drop-location.module').then( m => m.DropLocationPageModule)
   },
 
 
