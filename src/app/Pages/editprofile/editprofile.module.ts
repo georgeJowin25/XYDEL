@@ -1,7 +1,7 @@
+import { profileService } from '../../Services/profile.Service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { userService } from './Api.Service';
 import { IonicModule } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { EditprofilePageRoutingModule } from './editprofile-routing.module';
@@ -16,10 +16,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     IonicModule,
     EditprofilePageRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
   ],
   declarations: [EditprofilePage],
-  providers: [userService],
+  providers: [profileService],
 })
 export class EditprofilePageModule {}

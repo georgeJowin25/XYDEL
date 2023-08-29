@@ -1,9 +1,8 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { OtpService } from './Api.Service';
+import { mobileService } from '../../Services/mobile.Service';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-
 
 @Component({
   selector: 'app-mobile-number',
@@ -13,15 +12,11 @@ import { of } from 'rxjs';
 export class MobileNumberPage {
   mobileNumber!: number;
   isButtonDisabled = true;
-  apiResponse: string | { message: string } = 'null';
 
-  constructor(
-    private router: Router,
-    private otpService: OtpService,// Inject the OtpService
-    
-  ) {}
+  constructor(private router: Router, private mobileService: mobileService) {}
+
   handleNumberChange(text: string) {
-    const numberString = String(text); // Convert the number to a string
+    const numberString = String(text);
     if (numberString.length === 10) {
       this.isButtonDisabled = false;
     } else {
@@ -30,9 +25,8 @@ export class MobileNumberPage {
   }
   onKeyPress(event: KeyboardEvent) {
     const key = event.key;
-    // Check if the pressed key is a numeric character
     if (!/^\d*$/.test(key)) {
-      event.preventDefault(); // Prevent entering non-numeric characters
+      event.preventDefault();
     }
   }
 
@@ -41,28 +35,20 @@ export class MobileNumberPage {
       queryParams: { mobileNumber: this.mobileNumber },
     });
     if (!this.isButtonDisabled) {
-      this.otpService
+      this.mobileService
         .getOtp(this.mobileNumber)
         .pipe(
           tap((response) => {
             if (response.status === 'OK') {
-              // OTP sent successfully
-              this.apiResponse = response.message; // Update the apiResponse with the success message
               this.router.navigate(['/otp'], {
                 queryParams: { mobileNumber: this.mobileNumber },
               });
             } else {
-              // Request failed
-              this.apiResponse = {
-                message: response.message || 'Error occurred.',
-              };
               console.error(response);
             }
           }),
           catchError((error) => {
-            // Handle any errors that occurred during the API call
             console.error(error);
-            // Return an empty result to avoid breaking the observable chain
             return of();
           })
         )

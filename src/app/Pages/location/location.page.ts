@@ -1,46 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Position } from '@capacitor/geolocation';
 import { Geolocation } from '@capacitor/geolocation';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.page.html',
   styleUrls: ['./location.page.scss'],
 })
-export class LocationPage {
-  constructor(private router: Router) {}
+export class LocationPage implements OnInit {
+  constructor(private router: Router, private storage: Storage) {}
 
-async handleAllowLocation() {
+  ngOnInit() {
+    this.initStorage();
+  }
+
+  async initStorage() {
+    await this.storage.create();
+  }
+  
+  async handleAllowLocation() {
     try {
       let permissionStatus = await Geolocation.checkPermissions();
-    if (permissionStatus.location === 'prompt'){
-      permissionStatus = await Geolocation.requestPermissions();
-    }
+      if (permissionStatus.location === 'prompt') {
+        permissionStatus = await Geolocation.requestPermissions();
+      }
+      else{
+        alert('Please on the Gps');
+      }
       if (permissionStatus.location === 'granted') {
         const position: Position = await Geolocation.getCurrentPosition();
         const { latitude, longitude } = position.coords;
         const addressResponse = await this.reverseGeocode(latitude, longitude);
         if (addressResponse) {
-          console.log(addressResponse);
-          const { suburb, city, state, country, postcode} = addressResponse;
+          const { suburb, city, state, country, postcode } = addressResponse;
           const formattedAddress = `${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
-          this.router.navigate(['/tabs/home'], {
-            queryParams: { address: formattedAddress },
-          });
+          await this.storage.set('address', formattedAddress);
+          this.router.navigate(['/tabs/home']);
         } else {
-          // Handle case when address is not found
-          console.log('Address not found');
+          alert('Address not found');
         }
       } else {
-        // Location permission denied, navigate to manual location page
         this.router.navigate(['/manual-location']);
       }
     } catch (error) {
       console.log('Error getting current location:', error);
     }
   }
-  
+
   private async reverseGeocode(latitude: number, longitude: number) {
     try {
       const response = await fetch(

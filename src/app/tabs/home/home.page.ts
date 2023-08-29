@@ -1,16 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { Position } from '@capacitor/geolocation'; // Import Position instead of GeolocationPosition
-import { Geolocation } from '@capacitor/geolocation';
-import {
-  ActionPerformed,
-  PushNotificationSchema,
-  PushNotifications,
-  Token,
-} from '@capacitor/push-notifications';
-import { Subscription, interval } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PushNotifications } from '@capacitor/push-notifications';
+import { Storage } from '@ionic/storage-angular';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -19,7 +10,7 @@ register();
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, OnDestroy {
+export class HomePage implements OnInit {
   carouselItems = [
     {
       id: '01',
@@ -57,83 +48,33 @@ export class HomePage implements OnInit, OnDestroy {
     },
   ];
   address: string = '';
-  private subscription: Subscription = new Subscription();
-  private routerSubscription: Subscription = new Subscription();
-  private locationUpdateSubscription: Subscription = new Subscription();
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private storage: Storage) {}
 
   ngOnInit() {
-    this.subscription.add(
-      this.route.queryParams.subscribe((params) => {
-        this.address = params['address'];
-      })
-    );
-    
+    this.initStorage();
     this.registerNotifications();
-    // Update location on initial load
-    this.updateLocation();
-
-    // Subscribe to router events to trigger location updates when switching tabs
-    this.routerSubscription = this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.updateLocation();
-      });
-
-    // Start updating location every 5 seconds
-    // this.locationUpdateSubscription = interval(5000).subscribe(() => {
-    //   this.updateLocation();
-    // });
+    this.retrieveAndSetHomeAddress();
   }
 
-  ngOnDestroy() {
-    // Unsubscribe from subscriptions to prevent memory leaks
-    this.subscription.unsubscribe();
-    this.routerSubscription.unsubscribe();
-    this.locationUpdateSubscription.unsubscribe();
+  async initStorage() {
+    await this.storage.create();
   }
 
-  async updateLocation() {
-    try {
-      const position: Position = await Geolocation.getCurrentPosition(); // Use Position type
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      // Update the location or perform any other actions
-      console.log('New location:', latitude, longitude);
-      const address = await this.reverseGeocode(latitude, longitude);
-      if (address) {
-        const { suburb, city, state, country, postcode } = address;
-        this.address = ` ${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
-      }
-    } catch (error) {
-      console.error('Error updating location:', error);
-    }
-  }   
-
-  async registerNotifications () {
+  async registerNotifications() {
     let permStatus = await PushNotifications.checkPermissions();
-  
+
     if (permStatus.receive === 'prompt') {
       permStatus = await PushNotifications.requestPermissions();
     }
-  
+
     if (permStatus.receive !== 'granted') {
       throw new Error('User denied permissions!');
     }
   }
 
-  private async reverseGeocode(latitude: number, longitude: number) {
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
-      );
-      const data = await response.json();
-      return data.address;
-    } catch (error) {
-      console.log('Error reverse geocoding:', error);
-      return null;
-    }
+  async retrieveAndSetHomeAddress() {
+    this.address = (await this.storage.get('address')) || '';
   }
 
   navigateToUserProfile() {

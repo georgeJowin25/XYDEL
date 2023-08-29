@@ -4,7 +4,7 @@
 
 <ion-content>
   <ion-grid class="ion-padding">
-    <ion-img src="assets\Images\Otp.gif" class="center-img"></ion-img>
+    <ion-img src="assets\Images\otp.gif" class="center-img"></ion-img>
 
     <h1 class="ion-text-center">OTP Verification</h1>
     <p class="ion-text-center">
@@ -13,13 +13,31 @@
       <span class="edit-number" (click)="handleEditNumber()"> Edit </span>
     </p>
 
-    <ion-input label="OTP" label-placement="floating" fill="outline" placeholder="Enter the OTP" type="tel"
-      [(ngModel)]="otp"  (ngModelChange)="handleOtpChange($event)"  (keypress)="onKeyPress($event)" maxlength="6"></ion-input>
-      <div class="error-text">
-    <p  *ngIf="errorMessage">{{ errorMessage }}</p>
-  </div>
+    <ion-input
+      label="OTP"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Enter the OTP"
+      type="tel"
+      [(ngModel)]="otp"
+      (ngModelChange)="handleOtpChange($event)"
+      (keypress)="onKeyPress($event)"
+      maxlength="6"
+    ></ion-input>
+    <div class="msg-text">
+      <ng-container *ngIf="errorMessage; else successBlock">
+        <p class="error">{{ errorMessage }}</p>
+      </ng-container>
+      <ng-template #successBlock>
+        <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+      </ng-template>
+    </div>    
     <div class="button">
-      <ion-button color="primary" [disabled]="isDisabled" (click)="handleVerifyOTP()">
+      <ion-button
+        color="primary"
+        [disabled]="isDisabled"
+        (click)="handleVerifyOTP()"
+      >
         Verify OTP
       </ion-button>
     </div>

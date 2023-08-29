@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { profileService } from './Api.Service';
-import { tap } from 'rxjs/operators';
+import { profileService } from '../../Services/profile.Service';
+import { tap, catchError } from 'rxjs/operators';
 import { Storage } from '@ionic/storage-angular';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -10,15 +11,10 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  userDetails = {
-    firstName: '',
-    lastName: '',
-    mobileNumber: '',
-    alternatemobileNumber: '',
-    emailId: '',
-    gender: '',
-    userProfileDoc: '',
-  };
+  firstName!: '';
+  lastName!: '';
+  emailId!: '';
+  userProfileDoc!: '';
 
   constructor(
     private navCtrl: NavController,
@@ -26,12 +22,12 @@ export class ProfilePage implements OnInit {
     private storage: Storage
   ) {}
 
-  async ngOnInit() {
-    await this.initStorage();
+  ngOnInit() {
+    this.initStorage();
     this.loadUserDetails();
   }
-  async initStorage() {
-    await this.storage.create(); // Initialize Ionic Storage
+  initStorage() {
+    this.storage.create();
   }
   handleBack() {
     this.navCtrl.navigateBack(['/tabs/home']);
@@ -43,22 +39,15 @@ export class ProfilePage implements OnInit {
         this.profileService
           .getUserDetails(id)
           .pipe(
-            tap({
-              next: (response) => {
-                const user = response.data[0]; // Assuming data is an array with a single user object
-                this.userDetails = {
-                  firstName: user.firstName,
-                  lastName: user.lastName,
-                  mobileNumber: user.mobileNumber,
-                  alternatemobileNumber: user.alternateMobileNumber,
-                  emailId: user.emailId,
-                  gender: user.gender,
-                  userProfileDoc: user.userProfileDoc,
-                };
-              },
-              error: (error) => {
-                console.error('Error loading user details:', error);
-              },
+            tap((response) => {
+              this.firstName = response.data.appUserDetails.firstName;
+              this.lastName = response.data.appUserDetails.lastName;
+              this.emailId = response.data.appUserDetails.emailId;
+              this.userProfileDoc = response.data.appUserDetails.userProfileDoc;
+            }),
+            catchError((error) => {
+              console.error('Error loading user details:', error);
+              return EMPTY;
             })
           )
           .subscribe();
@@ -84,6 +73,6 @@ export class ProfilePage implements OnInit {
 
   async handleLogout() {
     await this.storage.clear();
-    this.navCtrl.navigateRoot(['getting-started']);
+    this.navCtrl.navigateRoot(['/getting-started']);
   }
 }

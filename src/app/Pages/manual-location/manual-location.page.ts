@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-manual-location',
   templateUrl: './manual-location.page.html',
   styleUrls: ['./manual-location.page.scss'],
 })
-export class ManualLocationPage {
+export class ManualLocationPage implements OnInit {
+
   location: string = '';
   currentLocation: Position | null = null;
   address: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private storage: Storage) {}
+
+  ngOnInit() {
+    this.initStorage(); 
+  }
+
+  async initStorage() {
+    await this.storage.create();
+  }
 
   handleLocationChange(text: string) {
     this.location = text;
@@ -20,21 +30,27 @@ export class ManualLocationPage {
 
   async handleGetCurrentLocation() {
     try {
+      let permissionStatus = await Geolocation.checkPermissions();
+      if(permissionStatus.location === 'prompt') {
       const position = await Geolocation.getCurrentPosition();
       this.currentLocation = position;
-      console.log(position);
       const addressResponse = await this.reverseGeocode(
         position.coords.latitude,
         position.coords.longitude
       );
-
       if (addressResponse) {
         const { suburb, city, state, country, postcode } = addressResponse;
         this.address = ` ${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
+        await this.storage.set('address', this.address);
       } else {
         this.address = 'Address not found';
       }
-    } catch (error) {
+    } 
+    else{
+      alert('Please on the Gps');
+    }
+  }
+    catch (error) {
       console.log('Error getting current location:', error);
     }
   }
@@ -57,16 +73,11 @@ export class ManualLocationPage {
     }
   }
 
-  handleNext() {
+  async handleNext() {
     if (!this.currentLocation) {
-      // Location is not selected, show an alert
       alert('Please select the location');
       return;
     }
-
-    // Location is selected, navigate to the next screen
-    this.router.navigate(['/tabs/home'], {
-      queryParams: { address: this.address },
-    });
+    await this.router.navigate(['/tabs/home']);
   }
 }

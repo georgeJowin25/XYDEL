@@ -13,7 +13,6 @@ ion-content {
     font-size: 24px;
   }
 }
-
 .profile-card {
   margin: 30px;
 
@@ -31,8 +30,8 @@ ion-content {
     font-family: "Poppins-Regular";
   }
 
-  .edit-button {
-    margin-left: 80px;
+ ion-button{
+    margin-left: 85px;
     --border-radius: 8px;
     --padding-end: 15px;
     --padding-start: 15px;
@@ -41,4 +40,8 @@ ion-content {
 
 .bottom-container {
   margin-top: 20px;
+
+  ion-item{ 
+    margin-bottom: 20px;
+  }
 }

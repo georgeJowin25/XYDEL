@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { OtpService } from './Api.Service';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { OtpService } from '../../Services/otp.Service';
+import { of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -12,50 +11,44 @@ import { Storage } from '@ionic/storage-angular';
   templateUrl: './otp.page.html',
   styleUrls: ['./otp.page.scss'],
 })
+
 export class OtpPage implements OnInit, OnDestroy {
-  errorMessage: any;
+
+  errorMessage: string = '';
+  successMessage: string = '';
   timer: number = 60;
-  apiResponse: any;
   mobileNumber!: number;
   otp!: number;
   isDisabled = true;
-  private subscription: Subscription = new Subscription();
   resendDisabled: boolean = true;
 
-  private timerInterval: any; // Store the timer interval reference
+  private timerInterval: any;
 
   constructor(
-    private navCtrl: NavController,
     private route: ActivatedRoute,
     private router: Router,
     private otpService: OtpService,
-    private storage: Storage // Inject the OtpService
+    private storage: Storage
   ) {}
 
   ngOnInit(): void {
-    // Get the mobile number from the query params
-    this.subscription.add(
-      this.route.queryParams.subscribe((params) => {
-        this.mobileNumber = params['mobileNumber'];
-      })
-    );
-    this.initStorage(); // Initialize Ionic Storage
-    // Start the timer
+    this.route.queryParams.subscribe((params) => {
+      this.mobileNumber = params['mobileNumber'];
+    });
+    this.initStorage();
     this.startTimer();
   }
 
   ngOnDestroy(): void {
-    // Clear the timer interval before destroying the component
     this.clearTimer();
-    this.subscription.unsubscribe();
   }
 
   async initStorage() {
-    await this.storage.create(); // Initialize Ionic Storage
+    await this.storage.create();
   }
 
   handleOtpChange(text: number) {
-    const otpString = String(text); // Convert the number to a string
+    const otpString = String(text);
     if (otpString.length === 6) {
       this.isDisabled = false;
     } else {
@@ -64,47 +57,36 @@ export class OtpPage implements OnInit, OnDestroy {
   }
   onKeyPress(event: KeyboardEvent) {
     const key = event.key;
-    // Check if the pressed key is a numeric character
     if (!/^\d*$/.test(key)) {
-      event.preventDefault(); // Prevent entering non-numeric characters
+      event.preventDefault();
     }
   }
 
   handleVerifyOTP() {
     this.router.navigate(['/location']);
-    this.subscription.add(
-      this.otpService
-        .verifyOTP(this.mobileNumber, this.otp)
-        .pipe(
-          tap((response: any) => {
-            console.log('API Response:', response); // Add this log to inspect the response
-
-            if (response.status === 'OK') {
-              const id = response.data.id;
-              this.storage.set('id', id).catch((error) => {
-                console.error('Error saving id:', error);
-              });
-              // OTP is valid, navigate to the location screen
-              this.router.navigate(['/location']);
-            } else if (
-              response.status === 'INTERNAL_SERVER_ERROR' &&
-              response.message === 'Otp Expired.Please Generate The New OTP'
-            ) {
-              // OTP is expired, enable resend and show error message
-              this.setResendDisabled(false);
-              this.errorMessage = response.message || 'OTP verification failed';
-            } else {
-              // OTP is invalid, show error message
-              this.errorMessage = response.message || 'OTP verification failed';
-            }
-          })
-        )
-        .subscribe()
-    );
+    this.otpService
+      .verifyOTP(this.mobileNumber, this.otp)
+      .pipe(
+        tap((response: any) => {
+          if (response.status === 'OK') {
+            const id = response.data.id;
+            this.storage.set('id', id);
+            this.router.navigate(['/location']);
+          } else if (
+            response.status === 'INTERNAL_SERVER_ERROR' &&
+            response.message === 'Otp Expired.Please Generate The New OTP'
+          ) {
+            this.errorMessage = response.message || 'OTP verification failed';
+          } else {
+            this.errorMessage = response.message || 'OTP verification failed';
+          }
+        })
+      )
+    .subscribe();
   }
 
   handleEditNumber() {
-    this.navCtrl.navigateBack('mobile-number');
+    this.router.navigate(['/mobile-number']);
   }
 
   setResendDisabled(disabled: boolean) {
@@ -114,30 +96,27 @@ export class OtpPage implements OnInit, OnDestroy {
   handleResendOTP() {
     this.setResendDisabled(true);
     this.timer = 60;
-
-    this.subscription.add(
-      this.otpService.resendOTP(this.mobileNumber).subscribe({
-        next: (response: any) => {
-          if (response.ok) {
-            // Request succeeded
-            this.apiResponse = response;
+    this.startTimer();
+    this.otpService
+      .resendOTP(this.mobileNumber)
+      .pipe(
+        tap((response) => {
+          if (response.status === 'OK') {
+            this.successMessage = response.message;
           } else {
-            // Request failed
-            this.apiResponse = { message: 'Error occurred.' };
             console.error(response);
           }
-        },
-        error: (error) => {
+        }),
+        catchError((error) => {
           console.error(error);
-        },
-      })
-    );
+          return of();
+        })
+      )
+      .subscribe();
   }
 
   private startTimer() {
-    // Clear the existing timer interval (if any)
     this.clearTimer();
-
     this.timerInterval = setInterval(() => {
       if (this.timer > 0) {
         this.timer--;
@@ -149,7 +128,6 @@ export class OtpPage implements OnInit, OnDestroy {
   }
 
   private clearTimer() {
-    // Clear the timer interval
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
       this.timerInterval = null;

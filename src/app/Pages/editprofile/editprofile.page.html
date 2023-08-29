@@ -9,7 +9,9 @@
   </div>
   <div class="image-container">
     <ion-avatar class="profile-avatar">
-      <img [src]="userForm.get('userProfileDoc')?.value ? userForm.get('userProfileDoc')?.value : 'assets/Images/profile.jpg'" />
+      <img
+        [src]="userForm.get('userProfileDoc')?.value ? userForm.get('userProfileDoc')?.value : 'assets/Images/profile.jpg'"
+      />
       <ion-button class="imageChange" fill="clear" (click)="selectImage()">
         <ion-icon name="camera" size="medium" color="primary"></ion-icon>
       </ion-button>
@@ -20,68 +22,87 @@
     <form [formGroup]="userForm">
       <ion-list>
         <div>
-          <ion-item class="input-item">
-            <ion-label position="floating">First Name</ion-label>
-            <ion-icon name="person" slot="start"></ion-icon>
-            <ion-input placeholder="First Name" formControlName="firstName"></ion-input>
-          </ion-item>
-        </div>
-        <div>
-          <ion-item class="input-item">
-            <ion-label position="floating">Last Name</ion-label>
-            <ion-icon name="person" slot="start"></ion-icon>
-            <ion-input placeholder="Last Name" formControlName="lastName"></ion-input>
-          </ion-item>
-        </div>
-        <div>
-          <ion-item class="input-item">
-            <ion-label position="floating">Email</ion-label>
-            <ion-icon name="mail" slot="start"></ion-icon>
-            <ion-input placeholder="Email" formControlName="emailId" type="email"></ion-input>
-          </ion-item>
-        </div>
-        <div>
-          <ion-item class="input-item">
-            <ion-label position="floating">Mobile Number</ion-label>
-            <ion-icon name="call" slot="start"></ion-icon>
+          <ion-item>
+            <ion-icon name="person" color="primary" slot="start"></ion-icon>
             <ion-input
+              label="First Name"
+              labelPlacement="floating"
+              placeholder="First Name"
+              formControlName="firstName"
+            ></ion-input>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item>
+            <ion-icon name="person" color="primary" slot="start"></ion-icon>
+            <ion-input
+              label="Last Name"
+              labelPlacement="floating"
+              placeholder="Last Name"
+              formControlName="lastName"
+            ></ion-input>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item>
+            <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+            <ion-input
+              placeholder="Email"
+              label="Email"
+              labelPlacement="floating"
+              formControlName="emailId"
+              type="email"
+            ></ion-input>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item>
+            <ion-icon name="call" color="primary" slot="start"></ion-icon>
+            <ion-input
+              label="Mobile Number"
+              labelPlacement="floating"
               placeholder="Mobile Number"
               formControlName="mobileNumber"
               type="tel"
               maxlength="10"
-              pattern="^[0-9]{10}$"
             ></ion-input>
           </ion-item>
         </div>
         <div>
-          <ion-item class="input-item">
-            <ion-label position="floating">Alternate Mobile Number</ion-label>
-            <ion-icon name="call" slot="start"></ion-icon>
+          <ion-item>
+            <ion-icon name="call" color="primary" slot="start"></ion-icon>
             <ion-input
+              label="Alternate Mobile Number"
+              labelPlacement="floating"
               placeholder="Alternate Mobile Number"
               formControlName="alternateMobileNumber"
               type="tel"
               maxlength="10"
-              pattern="^[0-9]{10}$"
             ></ion-input>
           </ion-item>
         </div>
         <div>
-          <ion-item class="input-item">
-            <ion-label position="floating">Gender</ion-label>
-            <ion-icon name="male-female" slot="start"></ion-icon>
-            <ion-select formControlName="gender">
+          <ion-item>
+            <ion-icon name="people" color="primary" slot="start"></ion-icon>
+            <ion-select formControlName="gender" label="Gender" labelPlacement="floating">
               <ion-select-option
                 placeholder="Select Gender"
                 label="select"
+                labelPlacement="floating"
                 *ngFor="let gender of genderData"
                 [value]="gender.value"
-              >{{ gender.value }}</ion-select-option>
+                >{{ gender.value }}</ion-select-option
+              >
             </ion-select>
           </ion-item>
         </div>
       </ion-list>
-      <ion-button (click)="logData()" color="primary" class="topMargin" [disabled]="!userForm.valid">
+      <ion-button
+        (click)="logData()"
+        color="primary"
+        class="topMargin"
+        [disabled]="!userForm.valid"
+      >
         Save
       </ion-button>
     </form>

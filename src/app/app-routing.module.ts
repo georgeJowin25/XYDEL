@@ -43,6 +43,11 @@ const routes: Routes = [
     path: 'pick-up-location',
     loadChildren: () => import('./Pages/pick-up-location/pick-up-location.module').then( m => m.PickUpLocationPageModule)
   },
+  {
+    path: 'drop-location',
+    loadChildren: () => import('./drop-location/drop-location.module').then( m => m.DropLocationPageModule)
+  },
+
 
 
 

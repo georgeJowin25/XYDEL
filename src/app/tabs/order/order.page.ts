@@ -15,4 +15,7 @@ export class OrderPage implements OnInit {
   pickUp(){
    this.router.navigate(['/pick-up-location']);
   }
+  drop(){
+    this.router.navigate(['/drop-location']);
+  }
 }

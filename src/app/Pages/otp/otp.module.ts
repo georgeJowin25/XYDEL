@@ -5,7 +5,7 @@ import { OtpPageRoutingModule } from './otp-routing.module';
 import { OtpPage } from './otp.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { OtpService } from './Api.Service';
+import { OtpService } from '../../Services/otp.Service';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 
