@@ -26,9 +26,6 @@ export class LocationPage implements OnInit {
       if (permissionStatus.location === 'prompt') {
         permissionStatus = await Geolocation.requestPermissions();
       }
-      else{
-        alert('Please on the Gps');
-      }
       if (permissionStatus.location === 'granted') {
         const position: Position = await Geolocation.getCurrentPosition();
         const { latitude, longitude } = position.coords;

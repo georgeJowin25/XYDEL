@@ -1,53 +1,41 @@
+ion-content{
+  display: flex;
+  align-items: center;
+}
+
 .header{
     margin-top: 10px;
     display: flex;
     align-items: center;
     ion-icon{
         margin-top: 8px;
-        font-size: 24px; 
+        font-size: 24px;   
     }
     h2{
         font-family: 'Poppins-Bold';
-        margin-left: 20px;
-       
+        margin-left: 20px; 
     }
 }
-.search-bar{
-    border-width: 0.5px;
-    border-color: black;
-    ion-searchbar {
-        --background: #fff;
-        --border-radius:8px
-        --border-radius: 8px;
-        
-    }
+ion-searchbar.custom{
+  margin-top: 20px;
+ --border-radius:8px;
+ 
 }
 .current-location{
   margin-top: 20px;
   display: flex;
   align-items: center;
-  justify-content:space-evenly;
+  justify-content: center;
+  
   ion-button{
     --border-radius: 8px;
     --padding-top: 0px;
     --padding-bottom: 0px;
-    --padding-start : 60px;
-    --padding-end : 60px;
+    --padding-start : 20px;
+    --padding-end : 20px;
   }
-  ion-icon.forward{
-    position:relative;
-    left: 30px;
+  ion-icon{
     font-size: 24px;
-
   }
-  ion-icon.location{
-    position:relative;
-    right: 30px;
-    font-size: 24px;
-
-  }
-  h4{
-    font-family: 'Poppins-regular';
-    font-size: 18px;
-  }
+ 
 }

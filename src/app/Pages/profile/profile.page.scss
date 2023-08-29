@@ -32,6 +32,8 @@ ion-content {
   ion-button {
     margin-left: 85px;
     --border-radius: 8px;
+    --padding-top:0px;
+    --padding-bottom: 0px;
     --padding-end: 15px;
     --padding-start: 15px;
     ion-icon{

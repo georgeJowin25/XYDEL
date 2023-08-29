@@ -30,8 +30,6 @@ export class ManualLocationPage implements OnInit {
 
   async handleGetCurrentLocation() {
     try {
-      let permissionStatus = await Geolocation.checkPermissions();
-      if(permissionStatus.location === 'prompt') {
       const position = await Geolocation.getCurrentPosition();
       this.currentLocation = position;
       const addressResponse = await this.reverseGeocode(
@@ -45,10 +43,6 @@ export class ManualLocationPage implements OnInit {
       } else {
         this.address = 'Address not found';
       }
-    } 
-    else{
-      alert('Please on the Gps');
-    }
   }
     catch (error) {
       console.log('Error getting current location:', error);
