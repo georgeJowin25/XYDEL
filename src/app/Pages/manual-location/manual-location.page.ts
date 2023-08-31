@@ -38,7 +38,7 @@ export class ManualLocationPage implements OnInit {
       );
       if (addressResponse) {
         const { suburb, city, state, country, postcode } = addressResponse;
-        this.address = ` ${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
+        this.address = ` ${suburb},${city},${state},${country},${postcode}`;
         await this.storage.set('address', this.address);
       } else {
         this.address = 'Address not found';
@@ -67,11 +67,8 @@ export class ManualLocationPage implements OnInit {
     }
   }
 
-  async handleNext() {
-    if (!this.currentLocation) {
-      alert('Please select the location');
-      return;
-    }
-    await this.router.navigate(['/tabs/home']);
+ handleNext() {
+
+     this.router.navigate(['/tabs/home']);
   }
 }

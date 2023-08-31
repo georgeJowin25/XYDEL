@@ -3,26 +3,27 @@
     <ion-row>
       <ion-col>
         <h2>What's your Location</h2>
-        <p>Allow Location access to get real-time updates on your order status.</p>
+        <p>
+          Allow Location access to get real-time updates on your order status.
+        </p>
       </ion-col>
     </ion-row>
-
     <ion-row>
       <ion-col>
         <img src="assets\Images\Notification.png" alt="Notification" />
       </ion-col>
     </ion-row>
-
     <ion-row>
       <ion-col>
-        <ion-button  (click)="handleAllowLocation()">
-          <ion-icon name="chevron-forward" slot="end"></ion-icon>Allow Location access</ion-button>
+        <ion-button (click)="handleAllowLocation()">
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>Allow Location
+          access</ion-button
+        >
       </ion-col>
     </ion-row>
-
     <ion-row>
       <ion-col>
-        <p (click)="navigateToManualLocation()">Enter Location Manually</p>
+        <a (click)="navigateToManualLocation()">Enter Location Manually</a>
       </ion-col>
     </ion-row>
   </ion-grid>

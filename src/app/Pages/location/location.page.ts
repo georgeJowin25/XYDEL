@@ -32,7 +32,7 @@ export class LocationPage implements OnInit {
         const addressResponse = await this.reverseGeocode(latitude, longitude);
         if (addressResponse) {
           const { suburb, city, state, country, postcode } = addressResponse;
-          const formattedAddress = `${suburb}, ${city}, ${state}, ${country}, ${postcode}`;
+          const formattedAddress = `${suburb},${city},${state},${country},${postcode}`;
           await this.storage.set('address', formattedAddress);
           this.router.navigate(['/tabs/home']);
         } else {

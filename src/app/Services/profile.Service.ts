@@ -29,4 +29,12 @@ export class profileService {
     return this.http.get(`${this.apiUrl}/user/details`, { headers, params });
   }
   
+  updateUserDetails(formData: any,id: string): Observable<any> {
+    const params = new HttpParams().set('id', id);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.put(`${this.apiUrl}/user/details/update`, formData, { headers,params });
+  }
 }

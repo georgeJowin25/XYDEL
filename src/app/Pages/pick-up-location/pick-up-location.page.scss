@@ -1,41 +1,25 @@
 ion-content{
-  display: flex;
-  align-items: center;
-}
-
-.header{
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    ion-icon{
-        margin-top: 8px;
-        font-size: 24px;   
-    }
-    h2{
-        font-family: 'Poppins-Bold';
-        margin-left: 20px; 
-    }
-}
-ion-searchbar.custom{
-  margin-top: 20px;
- --border-radius:8px;
- 
-}
-.current-location{
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ion-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 100px;
+  }
+  ion-item{
+    margin-top:30px;
+    --border-color: #000040;
+   
+  }
   
+  ion-fab-button {
+    --background: #000040;
+  }
+  ion-icon {
+    margin-right: 8px;
+  }
   ion-button{
+    margin-left: 35px;
     --border-radius: 8px;
-    --padding-top: 0px;
-    --padding-bottom: 0px;
-    --padding-start : 20px;
-    --padding-end : 20px;
+    --padding-start:30px;
+    --padding-end:30px;
   }
-  ion-icon{
-    font-size: 24px;
-  }
- 
 }

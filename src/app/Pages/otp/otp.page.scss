@@ -1,79 +1,77 @@
 ion-content {
-  display: flex;
-  align-items: center;
-}
-.center-img {
-  display: block;
-  width: 40%;
-  max-width: 300px;
-  margin: 0 auto 16px;
-}
+  .center-img {
+    display: block;
+    width: 40%;
+    max-width: 300px;
+    margin: 0 auto 16px;
+  }
 
-h1 {
-  font-size: 30px;
-  font-family: "Poppins-Bold";
-  margin-bottom: 2px;
-}
+  h1 {
+    font-size: 30px;
+    font-family: "Poppins-Bold";
+    margin-bottom: 2px;
+  }
 
-p {
-  font-size: 14px;
-  font-family: "Poppins-Regular";
-  color: gray;
-  margin-bottom: 32px;
-
-  .mobile-number {
+  p {
+    font-size: 14px;
+    font-family: "Poppins-Regular";
     color: gray;
+    margin-bottom: 32px;
+
+    .mobile-number {
+      color: gray;
+    }
+
+    .edit-number {
+      color: blue;
+      cursor: pointer;
+    }
   }
 
-  .edit-number {
-    color: blue;
-    cursor: pointer;
+  ion-input {
+    flex: 1;
+    font-size: 18px;
+    border: 0;
+    border-color: lightgray;
+    height: 50px;
+    width: 300px;
+    margin-left: 40px;
   }
-}
 
-ion-input {
-  flex: 1;
-  font-size: 18px;
-  border: 0;
-  border-color: lightgray;
-  height: 50px;
-  width: 300px;
-  margin-left: 40px;
-}
-
-.msg-text {   
-  .error{
-  font-size: 12px;
-  margin-top: 10px;
-  margin-bottom: auto;
-  font-family: "Poppins-Regular";
-  color: red;
-  text-align: center;
+  .msg-text {
+    .error {
+      font-size: 12px;
+      margin-top: 10px;
+      margin-bottom: auto;
+      font-family: "Poppins-Regular";
+      color: red;
+      text-align: center;
+    }
+    .success {
+      font-size: 12px;
+      margin-bottom: auto;
+      margin-top: 10px;
+      font-family: "Poppins-Regular";
+      color: green;
+      text-align: center;
+    }
   }
-  .success{
-  font-size: 12px;
-  margin-bottom: auto;
-  margin-top: 10px;
-  font-family: "Poppins-Regular";
-  color: green;
-  text-align: center;
-  }
-}
 
-.button {
-  display: flex;
-  justify-content: center; /* Center the button */
-  border-radius: 18px;
-  margin-top: 10px;
-}
-.timer-text {
-  font-size: 12px;
-  font-family: "Poppins-Regular";
-  color: gray;
-  text-align: center;
-a {
-  margin-top: 15px;
-  font-size: 14px;
-  font-family: "Poppins-Regular";
-}
+  .button {
+    display: flex;
+    justify-content: center;
+    border-radius: 18px;
+    margin-top: 10px;
+  }
+  .timer-text {
+    font-size: 12px;
+    font-family: "Poppins-Regular";
+    color: gray;
+    text-align: center;
+    a {
+      margin-top: 15px;
+      font-size: 14px;
+      font-family: "Poppins-Regular";
+    }
+  }
 }

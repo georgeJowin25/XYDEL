@@ -8,23 +8,20 @@
     <div class="title"><ion-title>My Profile</ion-title></div>
   </div>
   <div class="profile-card">
-    <ion-avatar class="profile-avatar">
+    <ion-avatar>
       <img
         [src]="userProfileDoc ? userProfileDoc : 'assets/Images/profile.jpg'"
       />
     </ion-avatar>
-    <ion-list>
-      <ion-label>
-        <h2>{{firstName}} {{lastName}}</h2>
-        <p>{{emailId}}</p>
-      </ion-label>
-    </ion-list>
+    <div class="text">
+    <p >{{ firstName }} {{ lastName }}</p>
+    <p class="email">{{ emailId }}</p>
+    </div>
     <ion-button (click)="navigateToEditProfile()">
       <ion-icon name="create-outline" slot="end"></ion-icon>
       Edit Profile
     </ion-button>
   </div>
-
   <div class="bottom-container">
     <ion-list class="options-list">
       <ion-item lines="none" detail="true" (click)="navigateToSettings()">

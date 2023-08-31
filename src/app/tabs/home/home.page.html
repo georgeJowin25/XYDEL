@@ -2,11 +2,7 @@
   <div class="top-container">
     <div class="container">
       <div class="location-icon">
-        <ion-buttons slot="start" >
-          <ion-button>
-            <ion-icon name="location-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <ion-icon slot="start" name="location-outline"></ion-icon>
       </div>
       <div class="address-text">
         <ng-container *ngIf="address; else loadingTemplate">
@@ -38,7 +34,7 @@
       </swiper-container>
     </div>
   </div>
-  <div class = "coupon-slider">
+  <div class="coupon-slider">
     <swiper-container [loop]="true" [autoplay]="{ delay: 3000 }">
       <swiper-slide *ngFor="let item of couponsData">
         <ion-row class="coupon-item">
@@ -53,7 +49,8 @@
     <div class="bottom-Box">
       <h3>Pick up or send anything</h3>
       <p>Sit back,relax and let XYDEL do the rest</p>
-      <ion-button class="overlay-button"
+      <ion-button
+        class="overlay-button"
         (click)="navigateToOrder()"
         expand="full"
         fill="solid"

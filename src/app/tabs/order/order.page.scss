@@ -1,24 +1,19 @@
-ion-content{
-  display: flex;
-  align-items: center;
-} 
-
 .title {
-  display:flex;
+  display: flex;
 
-ion-icon{
-  font-size: 30px;
-  color:black;
-}
-ion-title{
-  font-family: 'Poppins-Bold';
-  color: black;
-  position: relative;
-  right : 10px;
-}
+  ion-icon {
+    font-size: 30px;
+    color: black;
+  }
+  ion-title {
+    font-family: "Poppins-Bold";
+    color: black;
+    position: relative;
+    right: 10px;
+  }
 }
 .pick-button {
-  display : flex;
+  display: flex;
   margin-top: 20px;
   padding: 8px 5px;
   background-color: #000040;
@@ -26,40 +21,39 @@ ion-title{
   font-size: 14px;
   font-family: "Poppins-Regular";
   border-radius: 8px;
-  .text{
+  .text {
     margin-right: 120px;
   }
-  .icon{
+  .icon {
     font-size: 24px;
     position: relative;
-    right:15px
+    right: 15px;
   }
 }
 
-.vertical-icon{
+.vertical-icon {
   display: flex;
   flex-direction: column;
   margin-left: 25px;
 }
 
 .drop-button {
-  display : flex;
+  display: flex;
   padding: 8px 5px;
   background-color: #000040;
   color: #ffffff;
   font-size: 14px;
   font-family: "Poppins-Regular";
   border-radius: 8px;
-  .text{
+  .text {
     margin-right: 120px;
   }
-  .icon{
+  .icon {
     font-size: 24px;
     position: relative;
-    right:25px
+    right: 25px;
   }
 }
-
 
 .notes {
   font-size: 15px;
@@ -69,27 +63,27 @@ ion-title{
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 40px;
 
-.notes-heading {
-  font-family: "Poppins-Bold";
-  font-size: 15px;
-  margin-bottom: 10px;
-  color: grey;
-}
+  .notes-heading {
+    font-family: "Poppins-Bold";
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: grey;
+  }
 
-.notes-content {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column; 
-  align-items: flex-start;
-}
+  .notes-content {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.notes-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
+  .notes-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
 
-.notes-item ion-icon {
-  margin-right: 5px;
-}
+  .notes-item ion-icon {
+    margin-right: 5px;
+  }
 }

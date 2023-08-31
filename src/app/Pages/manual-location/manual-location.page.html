@@ -10,30 +10,17 @@
           <ion-input
             [(ngModel)]="location"
             (ngModelChange)="handleLocationChange($event)"
-            placeholder="Enter your location"
+            [placeholder]="address ? address : 'Enter your location'"
           ></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-
     <ion-row>
       <ion-col size="12">
         <ion-button (click)="handleGetCurrentLocation()">
           <ion-icon name="location-outline" slot="start"></ion-icon>
           Use my current Location
         </ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <ion-list>
-          <ion-item *ngIf="currentLocation">
-            <ion-icon name="locate" slot="start"></ion-icon>
-            <ion-label>
-              <h2>{{ address }}</h2>
-            </ion-label>
-          </ion-item>
-        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>

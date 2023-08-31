@@ -2,8 +2,8 @@ import { profileService } from '../../Services/profile.Service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Subscription,catchError,EMPTY } from 'rxjs';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { catchError, EMPTY } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage-angular';
 
@@ -14,6 +14,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class EditprofilePage implements OnInit {
   userForm!: FormGroup;
+  private appUserDetails: any;
 
   genderData = [
     { value: 'Male' },
@@ -21,14 +22,12 @@ export class EditprofilePage implements OnInit {
     { value: 'Rather not to say' },
   ];
 
-  private subscription: Subscription = new Subscription();
-
   constructor(
     private router: Router,
     private profileService: profileService,
     private storage: Storage,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.initStorage();
@@ -61,18 +60,22 @@ export class EditprofilePage implements OnInit {
     try {
       const id = await this.storage.get('id');
       if (id !== null) {
-        this.profileService.getUserDetails(id).pipe(
-          tap((response) => {
-            const mobile = response.data.appUser;
-            const user = response.data.appUserDetails;
-            this.userForm.patchValue(user);
-            this.userForm.patchValue(mobile);
-          }),
-          catchError((error) => {
-            console.error('Error loading user details:', error);
-            return EMPTY; 
-          })
-        ).subscribe();
+        this.profileService
+          .getUserDetails(id)
+          .pipe(
+            tap((response) => {
+              const user = response.data.appUserDetails;
+              const mobile = response.data.appUser;
+              this.userForm.patchValue(user);
+              this.userForm.patchValue(mobile);
+              this.appUserDetails = response.data.appUserDetails;
+            }),
+            catchError((error) => {
+              console.error('Error loading user details:', error);
+              return EMPTY;
+            })
+          )
+          .subscribe();
       } else {
         console.error('No id found in storage');
       }
@@ -80,7 +83,6 @@ export class EditprofilePage implements OnInit {
       console.error('Error retrieving id from storage:', error);
     }
   }
-  
 
   async selectImage() {
     const permissionRequestResult = await Camera.requestPermissions();
@@ -89,73 +91,50 @@ export class EditprofilePage implements OnInit {
       alert('Sorry, we need camera permissions to make this work!');
       return;
     }
-
-    const image = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Photos,
-      quality: 100,
-      allowEditing: true,
-      width: 1000,
-      height: 1000,
-    });
-
-    if (image && image.webPath) {
-      const imageBase64 = await this.convertImageToBase64(image.webPath);
-      this.userForm.patchValue({ userProfileDoc: imageBase64 });
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Uri,
+      });
+      this.userForm.patchValue({ userProfileDoc: image.webPath });
+    } catch (error) {
+      console.error('Error getting photo from camera:', error);
     }
   }
 
-  async convertImageToBase64(imagePath: string): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      const img = new Image();
-
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        const context = canvas.getContext('2d');
-        if (context) {
-          context.drawImage(img, 0, 0);
-          const base64String = canvas.toDataURL('image/jpeg');
-          resolve(base64String);
-        } else {
-          reject(new Error('Canvas context is null'));
-        }
-      };
-
-      img.onerror = (error) => {
-        reject(error);
-      };
-
-      img.crossOrigin = 'anonymous';
-      img.src = imagePath;
-    });
-  }
-
   async logData() {
-    if (this.userForm.valid) {
-      const formValue = await this.userForm.value;
-      const id = await this.storage.get('id');
-      this.subscription.add(
-        this.profileService
-          .sendUserDetails(formValue,id)
-          .pipe(
-            tap((response: any) => {
-              if (response.message === 'User Added Successfully') {
-                this.router.navigate(['/tabs/home']);
-              } else if (
-                response.status === 'INTERNAL_SERVER_ERROR' &&
-                response.message === 'User Not Found'
-              ) {
-                console.log('Internal Server Error:', response);
-              } else {
-                console.log('error', response);
-              }
-            })
-          )
-          .subscribe()
-      );
+    const formValue = await this.userForm.value;
+    const id = await this.storage.get('id');
+    if (this.appUserDetails == null) {
+      this.profileService
+        .sendUserDetails(formValue, id)
+        .pipe(
+          tap((response: any) => {
+            if (response.message === 'User Added Successfully') {
+              this.router.navigate(['/tabs/home']);
+            } else if (
+              response.status === 'INTERNAL_SERVER_ERROR' &&
+              response.message === 'User Not Found'
+            ) {
+              console.log('Internal Server Error:', response);
+            } else {
+              console.log('error', response);
+            }
+          })
+        )
+        .subscribe();
+    } else {
+      this.profileService
+        .updateUserDetails(formValue, id)
+        .pipe(
+          tap((response: any) => {
+            if (response.message === 'User  Updated Successfully') {
+              this.router.navigate(['/tabs/home']);
+            }
+          })
+        )
+        .subscribe();
     }
   }
 }

@@ -1,38 +1,38 @@
-.title {
-  font-size: 30px;
-  font-family: "Poppins-Bold";
-  margin-top: 50px;
-}
-.subtitle {
-  font-size: 16px;
-  color: gray;
-  font-family: "Poppins-Regular";
-  margin-bottom: 20px;
-}
-
-ion-input {
-  flex: 1;
-  font-size: 18px;
-  border: 0;
-  border-color: lightgray;
-  height: 50px;
-  width: 370px;
-  
-}
-.button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-
-p {
-  font-size: 15px;
-  margin-top: 10px;
-}
-
-.a {
-  color: red;
-  text-decoration-line: underline;
+ion-content {
+  .content-wrapper {
+    .title {
+      font-size: 25px;
+      font-family: "Poppins-Bold";
+      margin-top: 50px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: gray;
+      font-family: "Poppins-Regular";
+      margin-bottom: 20px;
+    }
+    ion-input {
+      flex: 1;
+      font-size: 18px;
+      border: 0;
+      border-color: lightgray;
+      height: 50px;
+      width: 370px;
+    }
+    .button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      p {
+        font-size: 15px;
+        margin-top: 10px;
+        .a {
+          color: red;
+          text-decoration-line: underline;
+        }
+      }
+    }
+  }
 }

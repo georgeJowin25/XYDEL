@@ -1,17 +1,18 @@
-ion-content {
-    align-items: center;
-  }
-  
+ion-content{
   ion-title {
     font-size: 20px;
     font-weight: bold;
     margin-top: 100px;
   }
+  ion-item{
+    margin-top:30px;
+    --border-color: #000040;
+   
+  }
   
   ion-fab-button {
     --background: #000040;
   }
-  
   ion-icon {
     margin-right: 8px;
   }
@@ -21,3 +22,4 @@ ion-content {
     --padding-start:30px;
     --padding-end:30px;
   }
+}

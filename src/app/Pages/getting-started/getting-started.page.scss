@@ -2,6 +2,7 @@ $color_1: white;
 $font-family_1: "Poppins-Bold";
 $font-family_2: "Poppins-Regular";
 
+ion-content{
 video {
   position: absolute;
   top: 0;
@@ -19,57 +20,59 @@ video {
   right: 0;
   bottom: 0;
   background: linear-gradient(transparent, black);
-}
 
-.content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding-bottom: 100px;
-  align-items: flex-start;
-}
-.logo-container {
-  display: flex;
-  flex-direction: row;
-}
-.logo {
-  width: 100px;
-  height: 100px;
-  margin-top: -10px;
-  margin-right: -10px;
-}
+  .content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 100px;
+    align-items: flex-start;
 
-.title {
-  font-family: $font-family_1;
-  color: $color_1;
-  font-size: 32px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
+    .logo-container {
+      display: flex;
+      flex-direction: row;
 
-.quote {
-  font-family: $font-family_2;
-  color: $color_1;
-  font-size: 16px;
-  margin-bottom: 20px;
-  padding: 0 30px;
-}
-.button{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-   
-ion-button{
-  --border-radius: 8px;
-  --padding-start: 46px;
-  --padding-end: 46px;
-}
+      .logo {
+        width: 100px;
+        height: 100px;
+        margin-top: -10px;
+        margin-right: -10px;
+      }
 
-ion-icon {
-  color: white;
-  font-size: 24px;
-  margin-left: 10px;
+      .title {
+        font-family: $font-family_1;
+        color: $color_1;
+        font-size: 32px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+    }
+    .quote {
+      font-family: $font-family_2;
+      color: $color_1;
+      font-size: 16px;
+      margin-bottom: 20px;
+      padding: 0 30px;
+    }
+    .button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+
+      ion-button {
+        --border-radius: 8px;
+        --padding-start: 46px;
+        --padding-end: 46px;
+      }
+
+      ion-icon {
+        color: $color_1;
+        font-size: 24px;
+        margin-left: 10px;
+      }
+    }
+  }
 }
 }
