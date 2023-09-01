@@ -3,26 +3,21 @@
 
   ion-icon {
     font-size: 30px;
-    color: black;
   }
   ion-title {
     font-family: "Poppins-Bold";
-    color: black;
     position: relative;
     right: 10px;
   }
 }
-.pick-button {
+
+.pickup-button {
   display: flex;
   margin-top: 20px;
-  padding: 8px 5px;
-  background-color: #000040;
-  color: #ffffff;
-  font-size: 14px;
-  font-family: "Poppins-Regular";
-  border-radius: 8px;
   .text {
     margin-right: 120px;
+    font-size: 14px;
+    font-family: "Poppins-Regular";
   }
   .icon {
     font-size: 24px;
@@ -34,19 +29,15 @@
 .vertical-icon {
   display: flex;
   flex-direction: column;
-  margin-left: 25px;
+  margin-left: 23px;
 }
 
 .drop-button {
   display: flex;
-  padding: 8px 5px;
-  background-color: #000040;
-  color: #ffffff;
-  font-size: 14px;
-  font-family: "Poppins-Regular";
-  border-radius: 8px;
   .text {
     margin-right: 120px;
+    font-size: 14px;
+    font-family: "Poppins-Regular";
   }
   .icon {
     font-size: 24px;
@@ -60,7 +51,7 @@
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 0.5px solid lightgrey;
   margin-top: 40px;
 
   .notes-heading {

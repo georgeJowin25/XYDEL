@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PickUpLocationPageRoutingModule } from './pick-up-location-routing.module';
@@ -13,7 +13,8 @@ import { PickUpLocationPage } from './pick-up-location.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PickUpLocationPageRoutingModule
+    PickUpLocationPageRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [PickUpLocationPage]
 })

@@ -10,7 +10,7 @@
           <ion-input
             [(ngModel)]="location"
             (ngModelChange)="handleLocationChange($event)"
-            [placeholder]="address ? address : 'Enter your location'"
+            [placeholder]="address ? address : 'Search For Building,area or street'"
           ></ion-input>
         </ion-item>
       </ion-col>
@@ -23,6 +23,56 @@
         </ion-button>
       </ion-col>
     </ion-row>
+    <form [formGroup]="myForm">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-input
+              label="Address"
+              label-placement="floating"
+              formControlName="address"
+              placeholder="Enter Address"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-input
+              label="Landmark"
+              label-placement="floating"
+              formControlName="landmark"
+              placeholder="Enter Landmark(Optional)"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-input
+              label="RecieverName"
+              label-placement="floating"
+              formControlName="recieverName"
+              placeholder="Enter Reciever's Name"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-input
+              label="Reciever MobileNumber"
+              label-placement="floating"
+              formControlName="recieverMobileNumber"
+              placeholder="Enter Reciever MobileNumber"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </form>
   </ion-grid>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="handleNext()"> Next </ion-fab-button>

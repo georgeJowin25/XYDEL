@@ -2,7 +2,7 @@ import { profileService } from '../../Services/profile.Service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { catchError, EMPTY } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage-angular';
@@ -95,9 +95,11 @@ export class EditprofilePage implements OnInit {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: true,
-        resultType: CameraResultType.Uri,
+        resultType: CameraResultType.Base64,
+        source: CameraSource.Camera
       });
-      this.userForm.patchValue({ userProfileDoc: image.webPath });
+      
+      this.userForm.patchValue({ userProfileDoc: image.path });
     } catch (error) {
       console.error('Error getting photo from camera:', error);
     }
@@ -134,7 +136,7 @@ export class EditprofilePage implements OnInit {
             }
           })
         )
-        .subscribe();
+      .subscribe();
     }
   }
 }

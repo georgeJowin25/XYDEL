@@ -3,36 +3,33 @@
     <div><ion-icon name="bicycle-sharp"></ion-icon></div>
     <div><ion-title>Pick up or Send anything</ion-title></div>
   </div>
-  <ion-list>
-    <div>
-    <ion-button class="pick-button"
-      expand="full"
-      fill="solid"
-      color="primary"
-      (click) = "pickUp()"
-    >
-     <div  class="icon"><ion-icon name="arrow-up" slot="start"></ion-icon></div> 
-      <div class="text"> Set pick up location </div>
+
+  <div>
+    <ion-button class="pickup-button" color="primary" (click)="pickUp()">
+      <div class="icon"><ion-icon name="arrow-up" slot="start"></ion-icon></div>
+      <div class="text">Set pick up location</div>
     </ion-button>
-    
   </div>
-    <div class="vertical-icon">
-      <div><ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon></div>
-      <div><ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon></div>
-      <div><ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon></div>
+  <div class="vertical-icon">
+    <div>
+      <ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon>
     </div>
-    <div >
-      <ion-button class="drop-button"
-        expand="full"
-        fill="solid"
-        color="primary"
-        (click) = "drop()"
-      >
-       <div class="icon"><ion-icon name="arrow-down" slot="start"></ion-icon></div> 
-        <div class="text"> Set drop location </div>
-      </ion-button>
+    <div>
+      <ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon>
     </div>
-  </ion-list>
+    <div>
+      <ion-icon name="ellipsis-vertical-outline" slot="start"></ion-icon>
+    </div>
+  </div>
+  <div>
+    <ion-button class="drop-button" color="primary" (click)="drop()">
+      <div class="icon">
+        <ion-icon name="arrow-down" slot="start"></ion-icon>
+      </div>
+      <div class="text">Set drop location</div>
+    </ion-button>
+  </div>
+
   <div class="notes">
     <ion-label class="notes-heading">Things to keep in mind</ion-label>
     <div class="notes-content">

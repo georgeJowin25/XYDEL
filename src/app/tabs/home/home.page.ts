@@ -32,19 +32,19 @@ export class HomePage implements OnInit {
       id: 1,
       text: 'Up to 75% off on First Order',
       code: 'GETXYDEL',
-      iconName: 'gift-outline',
+      iconName: 'gift',
     },
     {
       id: 2,
       text: 'Special Offer: Free Delivery',
       code: 'FREESHIP',
-      iconName: 'car-outline',
+      iconName: 'car',
     },
     {
       id: 3,
       text: '50% off on your Purchase',
       code: 'HALFOFF',
-      iconName: 'flash-outline',
+      iconName: 'flash',
     },
   ];
   address: string = '';

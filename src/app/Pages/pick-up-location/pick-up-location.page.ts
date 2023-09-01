@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation, Position } from '@capacitor/geolocation';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pick-up-location',
@@ -11,8 +12,14 @@ export class PickUpLocationPage {
   location: string = '';
   currentLocation: Position | null = null;
   address: string = '';
+  myForm: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private formBuilder: FormBuilder) { this.myForm = this.formBuilder.group({
+    address: ['', Validators.required],
+    landmark: [''],
+    senderName: ['', Validators.required],
+    senderMobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+  });}
   handleLocationChange(text: string) {
     this.location = text;
   }

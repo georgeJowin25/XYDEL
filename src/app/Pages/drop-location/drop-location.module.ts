@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { DropLocationPageRoutingModule } from './drop-location-routing.module';
@@ -13,7 +13,8 @@ import { DropLocationPage } from './drop-location.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    DropLocationPageRoutingModule
+    DropLocationPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [DropLocationPage]
 })

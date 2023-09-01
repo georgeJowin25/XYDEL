@@ -37,28 +37,24 @@
   <div class="coupon-slider">
     <swiper-container [loop]="true" [autoplay]="{ delay: 3000 }">
       <swiper-slide *ngFor="let item of couponsData">
-        <ion-row class="coupon-item">
+        <ion-col class="coupon-item">
           <ion-icon [name]="item.iconName" class="icon"></ion-icon>
-          <ion-label class="coupon-text">{{ item.text }}</ion-label>
-          <p>USE CODE {{item.code}} AT CHECKOUT</p>
-        </ion-row>
+          <ion-row >
+            <ion-label class="coupon-text">{{ item.text }}</ion-label>
+            <ion-label class="text">USE CODE {{item.code}} AT CHECKOUT</ion-label>
+          </ion-row>
+        </ion-col>
       </swiper-slide>
     </swiper-container>
   </div>
   <div class="bottom-container">
-    <div class="bottom-Box">
-      <h3>Pick up or send anything</h3>
-      <p>Sit back,relax and let XYDEL do the rest</p>
-      <ion-button
-        class="overlay-button"
-        (click)="navigateToOrder()"
-        expand="full"
-        fill="solid"
-        color="primary"
-      >
+    <ion-row>
+      <ion-label class="heading">Pick up or send Anything</ion-label>
+      <ion-label class="sub-heading">Sit back,relax and let XYDEL do the rest</ion-label>
+      <ion-button (click)="navigateToOrder()" color="primary">
         Set pick up & drop location
         <ion-icon name="arrow-forward" slot="end"></ion-icon>
       </ion-button>
-    </div>
+    </ion-row>
   </div>
 </ion-content>

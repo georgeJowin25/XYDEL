@@ -1,112 +1,100 @@
-.ion-content {
-  display: flex;
-  align-items: center;
-}
 .top-container {
   background: linear-gradient(#f4f5f8, #4786ef);
   border-bottom-left-radius: 28px;
   border-bottom-right-radius: 28px;
-}
-.container {
-  display: flex;
-  justify-content: space-between;
-}
-.location-icon {
-  font-size: 20px;
-  position: relative;
-  top: 10px;
-}
-.address-text p{
-  margin-right: 50px;
-  font-size: 12px;
-  font-family: "Poppins-Bold";
-}
-.profile-icon {
-  font-size: 20px;
-}
-.img-slider {
-  h3 {
-    font-size:15px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .location-icon {
+    color: black;
+    font-size: 20px;
+    position: relative;
+    top: 15px;
+  }
+  .address-text p {
+    color: black;
+    margin-right: 40px;
+    font-size: 12px;
     font-family: "Poppins-Bold";
   }
-  p {
-    font-size: 12px;
-    font-family: "Poppins-Regular";
+  .profile-icon {
+    color: black;
+    font-size: 20px;
+  }
+  .img-slider {
+    h3 {
+      color: black;
+      font-size: 15px;
+      font-family: "Poppins-Bold";
+    }
+    p {
+      color: black;
+      font-size: 12px;
+      font-family: "Poppins-Regular";
+    }
   }
 }
-
 .coupon-slider {
   margin-top: 50px;
   margin-left: 20px;
   margin-right: 20px;
+  border-radius: 18px;
+  border: 0.5px solid lightgrey;
 
   .coupon-item {
     display: flex;
     align-items: center;
     padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
-    margin-bottom: 10px;
 
     .icon {
-      font-size: 30px;
-      margin-right: 10px;
+      font-size: 60px;
       color: #000040;
-      
     }
 
     .coupon-text {
-      color: black;
+      margin-left: 20px;
       font-size: 20px;
       font-family: "Poppins-Bold";
-      text-align: center;
     }
-    p{
+    .text {
       color: grey;
-      margin-left: 40px;
+      margin-left: 20px;
       font-family: "Poppins-Regular";
       font-size: 13px;
-      position: relative;
-      bottom: 10px;
     }
   }
 }
 
 .bottom-container {
-  margin-top: 30px;
+  margin-top: 50px;
   margin-left: 20px;
   margin-right: 20px;
+  border-radius: 18px;
+  padding: 20px;
+  border: 0.5px solid lightgrey;
 
-  .bottom-Box {
-    color: black;
-    font-size: 15px;
-    font-family: "Poppins-Regular";
-    text-align: left;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px; 
-    margin-bottom: 50px;
-  }
-  h3 {
+  .heading {
+    font-size: 20px;
     font-family: "Poppins-Bold";
-    color: black;
   }
-  p {
+  .sub-heading {
+    font-size: 13px;
     font-family: "Poppins-Regular";
     color: grey;
   }
-  .overlay-button {
-    padding: 8px 10px;
-    background-color: #000040;
-    color: #ffffff;
-    font-size: 14px;
-    text-align: left;
+  ion-button {
+    margin-top: 20px;
+    --padding-start: 20px;
+    --padding-end: 60px;
+    --padding-top: 15px;
+    --padding-bottom: 15px;
     font-family: "Poppins-Regular";
-    border-radius: 8px;
-  }
-
-  .arrow-icon {
-    font-size: 16px;
-    color: #ffffff;
+    --border-radius: 8px;
+    ion-icon {
+      position: absolute;
+      right: -40px;
+    }
   }
 }
