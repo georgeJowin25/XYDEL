@@ -9,15 +9,13 @@
   </div>
   <div class="image-container">
     <ion-avatar class="profile-avatar">
-      <img
-        [src]="userForm.get('userProfileDoc')?.value ? userForm.get('userProfileDoc')?.value : 'assets/Images/profile.jpg'"
-      />
+      <img *ngIf="userForm.get('userProfileDoc')?.value" [src]="'data:image/jpeg;base64,' + userForm.get('userProfileDoc')?.value" />
+      <img *ngIf="!userForm.get('userProfileDoc')?.value" src="assets/Images/profile.jpg" />
       <ion-button class="imageChange" fill="clear" (click)="selectImage()">
         <ion-icon name="camera" size="medium" color="primary"></ion-icon>
       </ion-button>
     </ion-avatar>
   </div>
-
   <div class="main-container">
     <form [formGroup]="userForm">
       <ion-list>

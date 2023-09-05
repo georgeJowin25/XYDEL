@@ -99,7 +99,7 @@ export class EditprofilePage implements OnInit {
         source: CameraSource.Camera
       });
       
-      this.userForm.patchValue({ userProfileDoc: image.path });
+      this.userForm.patchValue({ userProfileDoc: image.base64String });
     } catch (error) {
       console.error('Error getting photo from camera:', error);
     }
@@ -131,7 +131,7 @@ export class EditprofilePage implements OnInit {
         .updateUserDetails(formValue, id)
         .pipe(
           tap((response: any) => {
-            if (response.message === 'User  Updated Successfully') {
+            if (response.message === 'User Updated Successfully') {
               this.router.navigate(['/tabs/home']);
             }
           })

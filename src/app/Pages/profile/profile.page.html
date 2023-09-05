@@ -9,9 +9,8 @@
   </div>
   <div class="profile-card">
     <ion-avatar>
-      <img
-        [src]="userProfileDoc ? userProfileDoc : 'assets/Images/profile.jpg'"
-      />
+      <img [src]="userProfileDoc ? 'data:image/jpeg;base64,' + userProfileDoc : 'assets/Images/profile.jpg'" />
+
     </ion-avatar>
     <div class="text">
     <p >{{ firstName }} {{ lastName }}</p>

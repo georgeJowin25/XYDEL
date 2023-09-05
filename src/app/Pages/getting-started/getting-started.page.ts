@@ -8,8 +8,9 @@ import { Router } from '@angular/router';
 })
 export class GettingStartedPage implements OnInit {
   constructor(private router: Router) {}
-  ngOnInit() {}
+  ngOnInit() {
+  }
   getStarted() {
-    this.router.navigate(['/mobile-number']); // Navigate to the mobile number page
-  } 
+    this.router.navigate(['/mobile-number']);
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { profileService } from '../../Services/profile.Service';
 import { tap, catchError } from 'rxjs/operators';
 import { Storage } from '@ionic/storage-angular';
@@ -17,7 +17,7 @@ export class ProfilePage implements OnInit {
   userProfileDoc!: '';
 
   constructor(
-    private navCtrl: NavController,
+   private router: Router,
     private profileService: profileService,
     private storage: Storage
   ) {}
@@ -30,7 +30,7 @@ export class ProfilePage implements OnInit {
     this.storage.create();
   }
   handleBack() {
-    this.navCtrl.navigateBack(['/tabs/home']);
+    this.router.navigate(['/tabs/home']);
   }
   async loadUserDetails() {
     try {
@@ -59,7 +59,7 @@ export class ProfilePage implements OnInit {
     }
   }
   navigateToEditProfile() {
-    this.navCtrl.navigateForward(['/editprofile']);
+    this.router.navigate(['/editprofile']);
   }
 
   navigateToSettings() {
@@ -71,7 +71,7 @@ export class ProfilePage implements OnInit {
   }
 
   async handleLogout() {
-    await this.storage.clear();
-    this.navCtrl.navigateRoot(['/getting-started']);
+    await this.storage.set('id', null);
+    this.router.navigate(['/getting-started']);
   }
 }
